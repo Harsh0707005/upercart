@@ -246,13 +246,13 @@ class WebMenuBar extends StatelessWidget implements PreferredSizeWidget {
                 }),
                 const SizedBox(width: 20),
 
-                MenuButton(title: 'favourite'.tr, onTap: () {
-                  if(AddressHelper.getUserAddressFromSharedPref() != null) {
-                    Get.toNamed(RouteHelper.getFavouriteScreen());
-                  } else {
-                    showCustomSnackBar('please_select_address_first'.tr,);
-                  }
-                }),
+                // MenuButton(title: 'favourite'.tr, onTap: () {
+                //   if(AddressHelper.getUserAddressFromSharedPref() != null) {
+                //     Get.toNamed(RouteHelper.getFavouriteScreen());
+                //   } else {
+                //     showCustomSnackBar('please_select_address_first'.tr,);
+                //   }
+                // }),
                 const SizedBox(width: 20),
 
                 // MenuButton(title: 'stores'.tr, onTap: () {
