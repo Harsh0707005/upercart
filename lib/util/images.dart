@@ -73,6 +73,7 @@ class Images {
   static const String linkedin = 'assets/image/linkedin.png';
   static const String instagram = 'assets/image/instagram.png';
   static const String pinterest = 'assets/image/pinterest.png';
+  static const String tiktok = 'image/tiktok.png';
   static const String orders = 'assets/image/orders.png';
   static const String sender = 'assets/image/sender.png';
   static const String wallet = 'assets/image/wallet.png';

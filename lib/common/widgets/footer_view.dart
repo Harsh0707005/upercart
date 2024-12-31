@@ -130,7 +130,7 @@ class _FooterViewState extends State<FooterView> {
                         }else if(name == 'instagram'){
                           icon = Images.instagram;
                         }else if(name == 'pinterest'){
-                          icon = Images.pinterest;
+                          icon = Images.tiktok;
                         }
                         return  Padding(
                           padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
@@ -145,7 +145,7 @@ class _FooterViewState extends State<FooterView> {
                                 _launchURL(url);
                               }
                             },
-                            child: Image.asset(icon, height: 30, width: 30, fit: BoxFit.contain, color: Theme.of(context).primaryColor),
+                            child: name=="pinterest" ? Image.asset(icon, height: 30, width: 30, fit: BoxFit.contain): Image.asset(icon, height: 30, width: 30, fit: BoxFit.contain, color: Theme.of(context).primaryColor),
                           ),
                         );
                       },
