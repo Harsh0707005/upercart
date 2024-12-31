@@ -34,6 +34,7 @@ import 'package:sixam_mart/features/home/widgets/web/web_special_offer_view_widg
 import 'package:sixam_mart/features/home/widgets/web/web_visit_again_view_widget.dart';
 import 'package:sixam_mart/helper/auth_helper.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
+import 'package:sixam_mart/helper/route_helper.dart';
 import 'package:sixam_mart/util/app_constants.dart';
 import 'package:sixam_mart/util/dimensions.dart';
 import 'package:sixam_mart/common/widgets/footer_view.dart';
@@ -43,6 +44,8 @@ import 'package:sixam_mart/features/dashboard/widgets/address_bottom_sheet_widge
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/features/home/widgets/bad_weather_widget.dart';
+
+import '../../../common/widgets/title_widget.dart';
 
 class WebNewHomeScreen extends StatefulWidget {
   final ScrollController scrollController;
@@ -159,6 +162,24 @@ class _WebNewHomeScreenState extends State<WebNewHomeScreen> {
                 const WebViewCategoryItems(categoryID: "624", categoryName: "Fresh Bakery", isFood: false, isShop: false),
                 const WebViewCategoryItems(categoryID: "609", categoryName: "Cookies, Desserts, and Ice Cream", isFood: false, isShop: false),
                 const WebViewCategoryItems(categoryID: "514", categoryName: "Small Appliances", isFood: false, isShop: false),
+
+
+                Center(
+                  child: TextButton(
+                    onPressed: () {
+                      // Navigate to the category route
+                      Get.toNamed(RouteHelper.getCategoryRoute());
+                    },
+                    child: const Text(
+                      "See all categories",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
 
 
                 // isFood

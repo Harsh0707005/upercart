@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 import 'package:sixam_mart/common/widgets/hover/text_hover.dart';
 
+import '../../../../common/widgets/title_widget.dart';
+
 class WebCategoryViewWidget extends StatefulWidget {
   final CategoryController categoryController;
   const WebCategoryViewWidget({super.key, required this.categoryController});
@@ -66,7 +68,13 @@ class _WebCategoryViewWidgetState extends State<WebCategoryViewWidget> {
 
     return isPharmacy ? PharmacyCategoryView(categoryController: widget.categoryController) : isFood ? FoodCategoryView(categoryController: widget.categoryController) : Stack(children: [
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+          // padding: EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge, vertical: Dimensions.paddingSizeExtremeLarge),
+          child: TitleWidget(
+            title: "Categories",
+          ),
+        ),
         SizedBox(
           height: 190, width: Get.width,
           child: widget.categoryController.categoryList != null ? ListView.builder(
