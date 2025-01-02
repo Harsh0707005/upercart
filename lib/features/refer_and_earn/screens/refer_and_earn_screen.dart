@@ -88,9 +88,13 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
                         const SizedBox(height: Dimensions.paddingSizeSmall),
 
                         ResponsiveHelper.isDesktop(context) ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          // Text(
+                          //   '${'one_referral'.tr}= ', style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
+                          // ),
                           Text(
-                            '${'one_referral'.tr}= ', style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
+                            "1 Referral = JM\$250", style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
                           ),
+
                           Text(
                             PriceConverter.convertPrice(Get.find<SplashController>().configModel != null
                                 ? Get.find<SplashController>().configModel!.refEarningExchangeRate!.toDouble() : 0.0),

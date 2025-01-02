@@ -145,22 +145,22 @@ class WalletStepper extends StatelessWidget {
                   color: Theme.of(context).primaryColor.withOpacity(0.30),
                 ),
               ),
-
-              Container(
-                height: 15,
-                width: 15,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Theme.of(context).primaryColor, width: 2)
-                ),
-              ),
-
-              Expanded(
-                child: VerticalDivider(
-                  thickness: 3,
-                  color: Theme.of(context).primaryColor.withOpacity(0.30),
-                ),
-              ),
+              //
+              // Container(
+              //   height: 15,
+              //   width: 15,
+              //   decoration: BoxDecoration(
+              //       shape: BoxShape.circle,
+              //       border: Border.all(color: Theme.of(context).primaryColor, width: 2)
+              //   ),
+              // ),
+              //
+              // Expanded(
+              //   child: VerticalDivider(
+              //     thickness: 3,
+              //     color: Theme.of(context).primaryColor.withOpacity(0.30),
+              //   ),
+              // ),
 
               Container(
                 height: 15,
@@ -181,8 +181,8 @@ class WalletStepper extends StatelessWidget {
               children: [
                 Text('earn_money_to_your_wallet_by_completing_the_offer_challenged'.tr, style: robotoRegular),
                 Text('convert_your_loyalty_points_into_wallet_money'.tr, style: robotoRegular),
-                Text('amin_also_reward_their_top_customers_with_wallet_money'.tr, style: robotoRegular),
-                Text('send_your_wallet_money_while_order'.tr, style: robotoRegular),
+                // Text('amin_also_reward_their_top_customers_with_wallet_money'.tr, style: robotoRegular),
+                Text("Place orders using money from your wallet at checkout", style: robotoRegular),
               ],
             ),
           ),

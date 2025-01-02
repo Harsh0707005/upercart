@@ -116,10 +116,10 @@ class _AddFundDialogueWidgetState extends State<AddFundDialogueWidget> {
                 text: TextSpan(children: [
                   TextSpan(text: 'choose_payment_method'.tr, style: robotoBold.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyLarge!.color)),
                   const TextSpan(text: ' '),
-                  TextSpan(
-                    text: 'faster_and_secure_way_to_pay_bill'.tr,
-                    style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).hintColor),
-                  ),
+                  // TextSpan(
+                  //   text: 'faster_and_secure_way_to_pay_bill'.tr,
+                  //   style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).hintColor),
+                  // ),
                 ]),
               ),
             ),

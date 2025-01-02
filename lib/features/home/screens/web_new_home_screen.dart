@@ -31,7 +31,7 @@ import 'package:sixam_mart/features/home/widgets/web/web_populer_store_view_widg
 import 'package:sixam_mart/features/home/widgets/web/web_promotional_banner_view_widget.dart';
 import 'package:sixam_mart/features/home/widgets/web/web_recomanded_store_view_widget.dart';
 import 'package:sixam_mart/features/home/widgets/web/web_special_offer_view_widget.dart';
-import 'package:sixam_mart/features/home/widgets/web/web_visit_again_view_widget.dart';
+// import 'package:sixam_mart/features/home/widgets/web/web_visit_again_view_widget.dart';
 import 'package:sixam_mart/helper/auth_helper.dart';
 import 'package:sixam_mart/helper/responsive_helper.dart';
 import 'package:sixam_mart/helper/route_helper.dart';
@@ -129,7 +129,7 @@ class _WebNewHomeScreenState extends State<WebNewHomeScreen> {
                       : categoryController.categoryList!.isEmpty ? const SizedBox() : WebCategoryViewWidget(categoryController: categoryController);
                 }),
 
-                _isLogin ?  WebVisitAgainView(fromFood: isFood) : const SizedBox(),
+                // _isLogin ?  WebVisitAgainView(fromFood: isFood) : const SizedBox(),
 
                 isPharmacy ? const WebBasicMedicineNearbyViewWidget()
                     : isShop ? const WebMostPopularItemViewWidget(isShop: true, isFood: false)
