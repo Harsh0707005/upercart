@@ -82,7 +82,7 @@ class HomeScreen extends StatefulWidget {
       // Get.find<StoreController>().getVisitAgainStoreList(fromModule: fromModule);
       await Get.find<ProfileController>().getUserInfo();
       Get.find<NotificationController>().getNotificationList(reload);
-      Get.find<CouponController>().getCouponList();
+      // Get.find<CouponController>().getCouponList();
     }
     Get.find<SplashController>().getModules();
     if(Get.find<SplashController>().module == null && Get.find<SplashController>().configModel!.module == null) {
@@ -222,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (AuthHelper.isLoggedIn()) {
                     await Get.find<ProfileController>().getUserInfo();
                     await Get.find<NotificationController>().getNotificationList(true);
-                    Get.find<CouponController>().getCouponList();
+                    // Get.find<CouponController>().getCouponList();
                   }
                   if (isPharmacy) {
                     Get.find<ItemController>().getBasicMedicine(true, true);
