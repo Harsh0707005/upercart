@@ -267,7 +267,8 @@ class Images {
   static const String favouriteSelect = 'assets/image/favourite_select.png';
   static const String orderUnselect = 'assets/image/order_unselect.png';
   static const String orderSelect = 'assets/image/order_select.png';
-  static const String menu = 'assets/image/menu.png';
+  // static const String menu = 'assets/image/menu.png';
+  static const String menu = 'assets/image/profile_icon.png';
   static const String messageUnselect = 'assets/image/message_unselect.png';
   static const String messageSelect = 'assets/image/message_select.png';
   static const String shoppingCart = 'assets/image/shopping_cart.png';
