@@ -192,56 +192,56 @@ class DeliverySection extends StatelessWidget {
           ),
           const SizedBox(height: Dimensions.paddingSizeLarge),
 
-          !isDesktop ? CustomTextField(
-            labelText: 'street_number'.tr,
-            titleText: 'write_street_number'.tr,
-            inputType: TextInputType.streetAddress,
-            focusNode: checkoutController.streetNode,
-            nextFocus: checkoutController.houseNode,
-            controller: checkoutController.streetNumberController,
-          ) : const SizedBox(),
-          SizedBox(height: !isDesktop ? Dimensions.paddingSizeLarge : 0),
+          // !isDesktop ? CustomTextField(
+          //   labelText: 'street_number'.tr,
+          //   titleText: 'write_street_number'.tr,
+          //   inputType: TextInputType.streetAddress,
+          //   focusNode: checkoutController.streetNode,
+          //   nextFocus: checkoutController.houseNode,
+          //   controller: checkoutController.streetNumberController,
+          // ) : const SizedBox(),
+          // SizedBox(height: !isDesktop ? Dimensions.paddingSizeLarge : 0),
 
-          Row(
-              children: [
-                isDesktop ? Expanded(
-                  child: CustomTextField(
-                    titleText: 'write_street_number'.tr,
-                    labelText: 'street_number'.tr,
-                    inputType: TextInputType.streetAddress,
-                    focusNode: checkoutController.streetNode,
-                    nextFocus: checkoutController.houseNode,
-                    controller: checkoutController.streetNumberController,
-                  ),
-                ) : const SizedBox(),
-                SizedBox(width: isDesktop ? Dimensions.paddingSizeSmall : 0),
-
-                Expanded(
-                  child: CustomTextField(
-                    titleText: 'write_house_number'.tr,
-                    labelText: 'house'.tr,
-                    inputType: TextInputType.text,
-                    focusNode: checkoutController.houseNode,
-                    nextFocus: checkoutController.floorNode,
-                    controller: checkoutController.houseController,
-                  ),
-                ),
-                const SizedBox(width: Dimensions.paddingSizeSmall),
-
-                Expanded(
-                  child: CustomTextField(
-                    titleText: 'write_floor_number'.tr,
-                    labelText: 'floor'.tr,
-                    inputType: TextInputType.text,
-                    focusNode: checkoutController.floorNode,
-                    inputAction: TextInputAction.done,
-                    controller: checkoutController.floorController,
-                  ),
-                ),
-                //const SizedBox(height: Dimensions.paddingSizeLarge),
-              ]
-          ),
-          const SizedBox(height: Dimensions.paddingSizeLarge),
+          // Row(
+          //     children: [
+          //       isDesktop ? Expanded(
+          //         child: CustomTextField(
+          //           titleText: 'write_street_number'.tr,
+          //           labelText: 'street_number'.tr,
+          //           inputType: TextInputType.streetAddress,
+          //           focusNode: checkoutController.streetNode,
+          //           nextFocus: checkoutController.houseNode,
+          //           controller: checkoutController.streetNumberController,
+          //         ),
+          //       ) : const SizedBox(),
+          //       SizedBox(width: isDesktop ? Dimensions.paddingSizeSmall : 0),
+          //
+          //       Expanded(
+          //         child: CustomTextField(
+          //           titleText: 'write_house_number'.tr,
+          //           labelText: 'house'.tr,
+          //           inputType: TextInputType.text,
+          //           focusNode: checkoutController.houseNode,
+          //           nextFocus: checkoutController.floorNode,
+          //           controller: checkoutController.houseController,
+          //         ),
+          //       ),
+          //       const SizedBox(width: Dimensions.paddingSizeSmall),
+          //
+          //       Expanded(
+          //         child: CustomTextField(
+          //           titleText: 'write_floor_number'.tr,
+          //           labelText: 'floor'.tr,
+          //           inputType: TextInputType.text,
+          //           focusNode: checkoutController.floorNode,
+          //           inputAction: TextInputAction.done,
+          //           controller: checkoutController.floorController,
+          //         ),
+          //       ),
+          //       //const SizedBox(height: Dimensions.paddingSizeLarge),
+          //     ]
+          // ),
+          // const SizedBox(height: Dimensions.paddingSizeLarge),
         ]),
       ) : const SizedBox(),
     ]);

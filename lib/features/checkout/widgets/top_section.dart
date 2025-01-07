@@ -211,31 +211,31 @@ class TopSection extends StatelessWidget {
           ),
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge, vertical: Dimensions.paddingSizeSmall),
           width: double.infinity,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('delivery_type'.tr, style: robotoMedium),
-              const SizedBox(height: Dimensions.paddingSizeSmall),
-
-              storeId != null ? DeliveryOptionButtonWidget(
-                value: 'delivery', title: 'home_delivery'.tr, charge: charge,
-                isFree: checkoutController.store!.freeDelivery, fromWeb: true, total: total,
-                deliveryChargeForView: deliveryChargeForView, badWeatherCharge: badWeatherCharge, extraChargeForToolTip: extraChargeForToolTip,
-              ) : SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [
-                Get.find<SplashController>().configModel!.homeDeliveryStatus == 1 && checkoutController.store!.delivery! ? DeliveryOptionButtonWidget(
-                  value: 'delivery', title: 'home_delivery'.tr, charge: charge,
-                  isFree: checkoutController.store!.freeDelivery,  fromWeb: true, total: total,
-                  deliveryChargeForView: deliveryChargeForView, badWeatherCharge: badWeatherCharge, extraChargeForToolTip: extraChargeForToolTip,
-                ) : const SizedBox(),
-                const SizedBox(width: Dimensions.paddingSizeDefault),
-
-                Get.find<SplashController>().configModel!.takeawayStatus == 1 && checkoutController.store!.takeAway! ? DeliveryOptionButtonWidget(
-                  value: 'take_away', title: 'take_away'.tr, charge: deliveryCharge, isFree: true,  fromWeb: true, total: total,
-                  deliveryChargeForView: deliveryChargeForView, badWeatherCharge: badWeatherCharge, extraChargeForToolTip: extraChargeForToolTip,
-                ) : const SizedBox(),
-              ]),
-              ),
-            ],
-          ),
+          // child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     Text('delivery_type'.tr, style: robotoMedium),
+          //     const SizedBox(height: Dimensions.paddingSizeSmall),
+          //
+          //     storeId != null ? DeliveryOptionButtonWidget(
+          //       value: 'delivery', title: 'home_delivery'.tr, charge: charge,
+          //       isFree: checkoutController.store!.freeDelivery, fromWeb: true, total: total,
+          //       deliveryChargeForView: deliveryChargeForView, badWeatherCharge: badWeatherCharge, extraChargeForToolTip: extraChargeForToolTip,
+          //     ) : SingleChildScrollView(scrollDirection: Axis.horizontal, child: Row(children: [
+          //       Get.find<SplashController>().configModel!.homeDeliveryStatus == 1 && checkoutController.store!.delivery! ? DeliveryOptionButtonWidget(
+          //         value: 'delivery', title: 'home_delivery'.tr, charge: charge,
+          //         isFree: checkoutController.store!.freeDelivery,  fromWeb: true, total: total,
+          //         deliveryChargeForView: deliveryChargeForView, badWeatherCharge: badWeatherCharge, extraChargeForToolTip: extraChargeForToolTip,
+          //       ) : const SizedBox(),
+          //       const SizedBox(width: Dimensions.paddingSizeDefault),
+          //
+          //       Get.find<SplashController>().configModel!.takeawayStatus == 1 && checkoutController.store!.takeAway! ? DeliveryOptionButtonWidget(
+          //         value: 'take_away', title: 'take_away'.tr, charge: deliveryCharge, isFree: true,  fromWeb: true, total: total,
+          //         deliveryChargeForView: deliveryChargeForView, badWeatherCharge: badWeatherCharge, extraChargeForToolTip: extraChargeForToolTip,
+          //       ) : const SizedBox(),
+          //     ]),
+          //     ),
+          //   ],
+          // ),
         ),
         const SizedBox(height: Dimensions.paddingSizeLarge),
 
