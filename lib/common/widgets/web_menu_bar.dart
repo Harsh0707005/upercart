@@ -222,7 +222,7 @@ class WebMenuBar extends StatelessWidget implements PreferredSizeWidget {
             InkWell(
               // onTap: () => Get.toNamed(RouteHelper.getInitialRoute()),
               onTap: () {
-                html.window.location.href = '/'; // Redirect to home URL
+                html.window.location.href = '/';
               },
               child: Image.asset(Images.logo, width: 100, height: 50),
             ),

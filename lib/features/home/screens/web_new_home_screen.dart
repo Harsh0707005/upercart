@@ -286,22 +286,6 @@ class _WebNewHomeScreenState extends State<WebNewHomeScreen> {
                 ),
               ),
             ),
-
-            // child: GetBuilder<StoreController>(builder: (storeController) {
-            //   return FooterView(
-            //     child: SizedBox(
-            //       width: Dimensions.webMaxWidth,
-            //       child: PaginatedListView(
-            //         scrollController: widget.scrollController,
-            //         totalSize: storeController.storeModel?.totalSize,
-            //         offset: storeController.storeModel?.offset,
-            //         onPaginate: (int? offset) async =>
-            //         await storeController.getStoreList(offset!, false),
-            //         itemView: SizedBox.shrink(), // Placeholder widget
-            //       ),
-            //     ),
-            //   );
-            // }),
           ),
         ],
       ),
