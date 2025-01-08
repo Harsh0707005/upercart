@@ -151,7 +151,8 @@ class RouteHelper {
   static const String newUserSetupScreen = '/new-user-setup-screen';
 
 
-  static String getInitialRoute({bool fromSplash = false}) => '$initial?from-splash=$fromSplash';
+  // static String getInitialRoute({bool fromSplash = false}) => '$initial?from-splash=$fromSplash';
+  static String getInitialRoute({bool fromSplash = false}) => initial;
   static String getSplashRoute(NotificationBodyModel? body) {
     String data = 'null';
     if(body != null) {

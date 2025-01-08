@@ -17,6 +17,7 @@ import 'package:sixam_mart/util/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/common/widgets/custom_dropdown.dart';
+import 'dart:html' as html;
 
 class WebMenuBar extends StatelessWidget implements PreferredSizeWidget {
   const WebMenuBar({super.key});
@@ -219,7 +220,10 @@ class WebMenuBar extends StatelessWidget implements PreferredSizeWidget {
           child: Center(child: SizedBox(width: Dimensions.webMaxWidth, child: Row(children: [
 
             InkWell(
-              onTap: () => Get.toNamed(RouteHelper.getInitialRoute()),
+              // onTap: () => Get.toNamed(RouteHelper.getInitialRoute()),
+              onTap: () {
+                html.window.location.href = '/'; // Redirect to home URL
+              },
               child: Image.asset(Images.logo, width: 100, height: 50),
             ),
 
