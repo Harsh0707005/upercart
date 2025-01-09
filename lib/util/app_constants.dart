@@ -211,7 +211,7 @@ class AppConstants {
   ///Refer & Earn work flow list..
   static final dataList = [
     'Share your code with family and friends',
-    'They enter code when they create an Upercart account',
+    'They enter code when they create an account',
     'You earn when they place their first order',
     'Money from referrals is added to your wallet'
     //
