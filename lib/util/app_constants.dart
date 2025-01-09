@@ -210,13 +210,18 @@ class AppConstants {
 
   ///Refer & Earn work flow list..
   static final dataList = [
-    'invite_your_friends_and_business'.tr,
-    '${'they_register'.tr} ${AppConstants.appName} ${'with_special_offer'.tr}',
-    'you_made_your_earning'.tr,
+    'Share your code with family and friends',
+    'They enter code when they create an Upercart account',
+    'You earn when they place their first order',
+    'Money from referrals is added to your wallet'
+    //
+    // 'invite_your_friends_and_business'.tr,
+    // '${'they_register'.tr} ${AppConstants.appName} ${'with_special_offer'.tr}',
+    // 'you_made_your_earning'.tr,
   ];
 
   /// Delivery Tips
-  static List<String> tips = ['0' ,'15', '10', '20', '40', 'custom'];
+  static List<String> tips = ['0' ,'5', '10', '15', '20', 'custom'];
   static List<String> deliveryInstructionList = [
     'deliver_to_front_door'.tr,
     'deliver_the_reception_desk'.tr,
