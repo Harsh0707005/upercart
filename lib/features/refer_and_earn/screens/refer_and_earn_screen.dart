@@ -92,14 +92,14 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
                           //   '${'one_referral'.tr}= ', style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
                           // ),
                           Text(
-                            "1 Referral = JM\$250", style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
+                            "1 Referral = \$1", style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
                           ),
 
-                          Text(
-                            PriceConverter.convertPrice(Get.find<SplashController>().configModel != null
-                                ? Get.find<SplashController>().configModel!.refEarningExchangeRate!.toDouble() : 0.0),
-                            style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall), textDirection: TextDirection.ltr,
-                          ),
+                          // Text(
+                          //   PriceConverter.convertPrice(Get.find<SplashController>().configModel != null
+                          //       ? Get.find<SplashController>().configModel!.refEarningExchangeRate!.toDouble() : 0.0),
+                          //   style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall), textDirection: TextDirection.ltr,
+                          // ),
                         ]) : const SizedBox(),
                         ResponsiveHelper.isDesktop(context) ?  const SizedBox(height: 40) : const SizedBox(),
 

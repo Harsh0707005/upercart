@@ -384,7 +384,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
         child: CustomButton(
           isLoading: checkoutController.isLoading,
           // buttonText: 'place_order'.tr,
-          buttonText: "Enter Credit Card/Debit Card Details",
+          buttonText: "Enter Credit/Debit Card Details",
           onPressed: checkoutController.acceptTerms ? () {
           bool isAvailable = true;
           DateTime scheduleStartDate = DateTime.now();

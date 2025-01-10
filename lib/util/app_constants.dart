@@ -213,7 +213,8 @@ class AppConstants {
     'Share your code with family and friends',
     'They enter code when they create an account',
     'You earn when they place their first order',
-    'Money from referrals is added to your wallet'
+    'Money from referrals is added to your wallet',
+    'Family & friends get 5% off on their first order'
     //
     // 'invite_your_friends_and_business'.tr,
     // '${'they_register'.tr} ${AppConstants.appName} ${'with_special_offer'.tr}',
