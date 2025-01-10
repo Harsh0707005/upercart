@@ -26,6 +26,8 @@ import 'package:sixam_mart/features/checkout/widgets/web_delivery_instruction_vi
 import 'package:sixam_mart/features/store/widgets/camera_button_sheet_widget.dart';
 import 'dart:io';
 
+import 'note_prescription_section.dart';
+
 class TopSection extends StatelessWidget {
   final CheckoutController checkoutController;
   final double charge;
@@ -259,8 +261,16 @@ class TopSection extends StatelessWidget {
         SizedBox(height: !takeAway ? isDesktop ? Dimensions.paddingSizeLarge : Dimensions.paddingSizeSmall : 0),
 
         ///delivery instruction
-        !takeAway ? isDesktop ? const WebDeliveryInstructionView() : const DeliveryInstructionView() : const SizedBox(),
-        SizedBox(height: !takeAway ? isDesktop ? Dimensions.paddingSizeLarge : Dimensions.paddingSizeSmall : 0),
+        // !takeAway ? isDesktop ? const WebDeliveryInstructionView() : const DeliveryInstructionView() : const SizedBox(),
+        // SizedBox(height: !takeAway ? isDesktop ? Dimensions.paddingSizeLarge : Dimensions.paddingSizeSmall : 0),
+
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault), // Add horizontal padding
+          child: NoteAndPrescriptionSection(
+            checkoutController: checkoutController,
+            storeId: storeId,
+          ),
+        ),
 
         ///Create Account with existing info
 

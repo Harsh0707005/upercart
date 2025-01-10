@@ -79,7 +79,7 @@ class BottomSection extends StatelessWidget {
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
             ///Additional Note & prescription..
-            NoteAndPrescriptionSection(checkoutController: checkoutController, storeId: storeId),
+            // NoteAndPrescriptionSection(checkoutController: checkoutController, storeId: storeId),
 
             isDesktop && !isGuestLoggedIn ? PartialPayView(totalPrice: total, isPrescription: storeId != null) : const SizedBox(),
 
