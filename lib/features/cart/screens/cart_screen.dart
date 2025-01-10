@@ -625,42 +625,62 @@ class CheckoutButton extends StatelessWidget {
               Container(
                 width: Dimensions.webMaxWidth,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                    color: Theme.of(context).cardColor,
-                    border: Border.all(color: Theme.of(context).primaryColor, width: 0.5)),
+                  borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+                  color: Colors.red, // Background color set to red
+                  border: Border.all(color: Theme.of(context).primaryColor, width: 0.5),
+                ),
                 padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
-                //margin: ResponsiveHelper.isDesktop(context) ? const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault, vertical: Dimensions.paddingSizeSmall) : EdgeInsets.zero,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     InkWell(
-                      onTap: (){
-                        if(ResponsiveHelper.isDesktop(context)) {
+                      onTap: () {
+                        if (ResponsiveHelper.isDesktop(context)) {
                           Get.dialog(const Dialog(child: NotAvailableBottomSheetWidget()));
                         } else {
                           showModalBottomSheet(
-                            context: context, isScrollControlled: true, backgroundColor: Colors.transparent,
+                            context: context,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
                             builder: (con) => const NotAvailableBottomSheetWidget(),
                           );
                         }
                       },
-                      child: Row(children: [
-                        Expanded(child: Text('if_any_product_is_not_available'.tr, style: robotoMedium, maxLines: 2, overflow: TextOverflow.ellipsis)),
-                        const Icon(Icons.keyboard_arrow_down, size: 18),
-                      ]),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'if_any_product_is_not_available'.tr,
+                              style: robotoMedium.copyWith(color: Colors.white), // Text color set to white
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const Icon(Icons.keyboard_arrow_down, size: 18, color: Colors.white), // Icon color set to white
+                        ],
+                      ),
                     ),
-
-                    cartController.notAvailableIndex != -1 ? Row(children: [
-                      Text(cartController.notAvailableList[cartController.notAvailableIndex].tr, style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).primaryColor)),
-
-                      IconButton(
-                        onPressed: ()=> cartController.setAvailableIndex(-1),
-                        icon: const Icon(Icons.clear, size: 18),
-                      )
-                    ]) : const SizedBox(),
+                    cartController.notAvailableIndex != -1
+                        ? Row(
+                      children: [
+                        Text(
+                          cartController.notAvailableList[cartController.notAvailableIndex].tr,
+                          style: robotoMedium.copyWith(
+                            fontSize: Dimensions.fontSizeSmall,
+                            color: Colors.white, // Text color set to white
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () => cartController.setAvailableIndex(-1),
+                          icon: const Icon(Icons.clear, size: 18, color: Colors.white), // Icon color set to white
+                        ),
+                      ],
+                    )
+                        : const SizedBox(),
                   ],
                 ),
               ),
+
               ResponsiveHelper.isDesktop(context) ? const SizedBox(height: Dimensions.paddingSizeSmall) : const SizedBox(),
 
               SafeArea(
@@ -670,25 +690,29 @@ class CheckoutButton extends StatelessWidget {
                   isBold:  ResponsiveHelper.isDesktop(context) ? false : true,
                   radius: ResponsiveHelper.isDesktop(context) ? Dimensions.radiusSmall : Dimensions.radiusDefault,
                   onPressed: () {
-                  if(!cartController.cartList.first.item!.scheduleOrder! && availableList.contains(false)) {
-                    showCustomSnackBar('one_or_more_product_unavailable'.tr);
-                  } /*else if(AuthHelper.isGuestLoggedIn() && !Get.find<SplashController>().configModel!.guestCheckoutStatus!) {
-                    showCustomSnackBar('currently_your_zone_have_no_permission_to_place_any_order'.tr);
-                  }*/ else {
-                    if(Get.find<SplashController>().module == null) {
-                      int i = 0;
-                      for(i = 0; i < Get.find<SplashController>().moduleList!.length; i++){
-                        if(cartController.cartList[0].item!.moduleId == Get.find<SplashController>().moduleList![i].id){
-                          break;
+                    if (cartController.notAvailableIndex==-1){
+                      showCustomSnackBar("Please choose an action if the product is unavailable.");
+                    }else {
+                      if(!cartController.cartList.first.item!.scheduleOrder! && availableList.contains(false)) {
+                        showCustomSnackBar('one_or_more_product_unavailable'.tr);
+                      } /*else if(AuthHelper.isGuestLoggedIn() && !Get.find<SplashController>().configModel!.guestCheckoutStatus!) {
+                        showCustomSnackBar('currently_your_zone_have_no_permission_to_place_any_order'.tr);
+                      }*/ else {
+                        if(Get.find<SplashController>().module == null) {
+                          int i = 0;
+                          for(i = 0; i < Get.find<SplashController>().moduleList!.length; i++){
+                            if(cartController.cartList[0].item!.moduleId == Get.find<SplashController>().moduleList![i].id){
+                              break;
+                            }
+                          }
+                          Get.find<SplashController>().setModule(Get.find<SplashController>().moduleList![i]);
+                          HomeScreen.loadData(true);
                         }
-                      }
-                      Get.find<SplashController>().setModule(Get.find<SplashController>().moduleList![i]);
-                      HomeScreen.loadData(true);
-                    }
-                    Get.find<CouponController>().removeCouponData(false);
+                        Get.find<CouponController>().removeCouponData(false);
 
-                    Get.toNamed(RouteHelper.getCheckoutRoute('cart'));
-                  }
+                        Get.toNamed(RouteHelper.getCheckoutRoute('cart'));
+                      }
+                    }
                 }),
               ),
             ],
