@@ -12,7 +12,7 @@ void showCustomSnackBar(String? message, {bool isError = true, bool getXSnackBar
         maxWidth: 500,
         duration: const Duration(seconds: 3),
         snackStyle: SnackStyle.FLOATING,
-        margin: const EdgeInsets.only(left: Dimensions.paddingSizeSmall, right:  Dimensions.paddingSizeSmall, bottom:  100),
+        margin: const EdgeInsets.only(left: Dimensions.paddingSizeSmall, right:  Dimensions.paddingSizeSmall, bottom:  1000),
         borderRadius: Dimensions.radiusSmall,
         isDismissible: true,
         dismissDirection: DismissDirection.horizontal,
