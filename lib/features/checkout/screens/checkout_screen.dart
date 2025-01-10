@@ -383,7 +383,8 @@ class CheckoutScreenState extends State<CheckoutScreen> {
       child: SafeArea(
         child: CustomButton(
           isLoading: checkoutController.isLoading,
-          buttonText: 'place_order'.tr,
+          // buttonText: 'place_order'.tr,
+          buttonText: "Enter Credit Card/Debit Card Details",
           onPressed: checkoutController.acceptTerms ? () {
           bool isAvailable = true;
           DateTime scheduleStartDate = DateTime.now();
