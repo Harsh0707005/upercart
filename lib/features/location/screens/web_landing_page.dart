@@ -409,10 +409,27 @@ class _WebLandingPageState extends State<WebLandingPage> {
                             _address = AddressModel(
                                 latitude: randomPoint.longitude.toString(),
                                 longitude: randomPoint.latitude.toString(),
-                                zoneId: 2,
-                                address: _selectedZone!.name.toString()
+                                zoneId: _selectedZone!.id,
+                                address: _selectedZone!.name.toString(),
+                                addressType: "others"
                             );
-
+                            // print('ID: ${_address?.id}');
+                            // print('Address Type: ${_address?.addressType}');
+                            // print('Contact Person Number: ${_address?.contactPersonNumber}');
+                            // print('Address: ${_address?.address}');
+                            // print('Additional Address: ${_address?.additionalAddress}');
+                            // print('Latitude: ${_address?.latitude}');
+                            // print('Longitude: ${_address?.longitude}');
+                            // print('Zone ID: ${_address?.zoneId}');
+                            // print('Zone IDs: ${_address?.zoneIds}');
+                            // print('Method: ${_address?.method}');
+                            // print('Contact Person Name: ${_address?.contactPersonName}');
+                            // print('Street Number: ${_address?.streetNumber}');
+                            // print('House: ${_address?.house}');
+                            // print('Floor: ${_address?.floor}');
+                            // print('Zone Data: ${_address?.zoneData}');
+                            // print('Area IDs: ${_address?.areaIds}');
+                            // print('Email: ${_address?.email}');
                             _controller.text = _selectedZone!.name.toString();
                           } catch (e) {
                             print('Error generating random point: $e');
