@@ -152,16 +152,32 @@ class SearchScreenState extends State<SearchScreen> with TickerProviderStateMixi
                                   indicatorSize: TabBarIndicatorSize.tab,
                                   tabs: [
                                     Tab(text: 'item'.tr),
-                                    Tab(text: Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText! ? 'restaurants'.tr : 'stores'.tr),
+                                    // Tab(text: Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText! ? 'restaurants'.tr : 'stores'.tr),
                                   ],
                                 ),
                               ),
                               
+                              // InkWell(
+                              //   onTap: () {
+                              //     _actionSearch(false, _searchController.text.trim(), false);
+                              //   },
+                              //   child: Image.asset(Images.filter, height: 28, width: 28))
                               InkWell(
                                 onTap: () {
                                   _actionSearch(false, _searchController.text.trim(), false);
                                 },
-                                child: Image.asset(Images.filter, height: 28, width: 28))
+                                child: Row(
+                                  children: [
+                                    const Text(
+                                      'Set search filters', // Text beside the icon
+                                      style: TextStyle(fontSize: 16, color: Colors.black), // Customize text style
+                                    ),
+                                    const SizedBox(width: 8), // Spacing between icon and text
+                                    Image.asset(Images.filter, height: 28, width: 28),
+                                  ],
+                                ),
+                              )
+
                             ],
                           )
                         ),
@@ -351,11 +367,27 @@ class SearchScreenState extends State<SearchScreen> with TickerProviderStateMixi
                                 ),
                               ),
                               const SizedBox(width: Dimensions.paddingSizeSmall),
-                              Expanded(child: Text(
-                                searchController.suggestedItemList![index].name!,
-                                style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
-                                maxLines: 2, overflow: TextOverflow.ellipsis,
-                              )),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      searchController.suggestedItemList![index].name!,
+                                      style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
+                                      maxLines: 2, overflow: TextOverflow.ellipsis,
+                                    ),
+                                    const SizedBox(height: 4), // Optional spacing between name and price
+                                    Text(
+                                      "\$${searchController.suggestedItemList![index].price!}",
+                                      style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Colors.black),
+                                      maxLines: 1, overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),),
+                              Builder(builder: (_) {
+                                debugPrint(searchController.suggestedItemList![index].price!.toString());
+                                return const SizedBox(); // Return an empty widget to avoid layout issues
+                              }),
                             ]),
                           ),
                         );
