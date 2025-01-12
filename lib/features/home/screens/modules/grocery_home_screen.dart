@@ -18,6 +18,7 @@ import 'package:sixam_mart/features/home/widgets/views/top_offers_near_me.dart';
 import 'package:sixam_mart/features/home/widgets/views/visit_again_view.dart';
 import 'package:sixam_mart/helper/auth_helper.dart';
 
+import '../../widgets/web/ViewCategoryItems.dart';
 import '../../widgets/web/WebViewCategoryItems.dart';
 
 
@@ -49,7 +50,67 @@ class GroceryHomeScreen extends StatelessWidget {
       // const FlashSaleViewWidget(),
       // const BestStoreNearbyView(),
       const MostPopularItemView(isFood: false, isShop: false),
-      const WebViewCategoryItems(categoryID: "643", categoryName: "Poultry", isFood: false, isShop: false),
+      const CategoryItemsView(
+        categoryId: "643",
+        title: "Poultry",
+        isFood: false,
+        isShop: false,
+      ),
+      const CategoryItemsView(
+        categoryId: "647",
+        title: "Seafood & Fish",
+        isFood: false,
+        isShop: false,
+      ),
+      const CategoryItemsView(
+        categoryId: "638",
+        title: "Meat",
+        isFood: false,
+        isShop: false,
+      ),
+      const CategoryItemsView(
+        categoryId: "651",
+        title: "Beverages",
+        isFood: false,
+        isShop: false,
+      ),
+      const CategoryItemsView(
+        categoryId: "698",
+        title: "Oils, Baking & Condiments",
+        isFood: false,
+        isShop: false,
+      ),
+      const CategoryItemsView(
+        categoryId: "721",
+        title: "Snacks",
+        isFood: false,
+        isShop: false,
+      ),
+      const CategoryItemsView(
+        categoryId: "670",
+        title: "Prepared Foods",
+        isFood: false,
+        isShop: false,
+      ),
+      const CategoryItemsView(
+        categoryId: "624",
+        title: "Fresh Bakery",
+        isFood: false,
+        isShop: false,
+      ),
+      const CategoryItemsView(
+        categoryId: "609",
+        title: "Cookies, Desserts, and Ice Cream",
+        isFood: false,
+        isShop: false,
+      ),
+      const CategoryItemsView(
+        categoryId: "514",
+        title: "Small Appliances",
+        isFood: false,
+        isShop: false,
+      ),
+      // const WebViewCategoryItems(categoryID: "643", categoryName: "Poultry", isFood: false, isShop: false),
       // const WebViewCategoryItems(categoryID: "647", categoryName: "Seafood & Fish", isFood: false, isShop: false),
       // const WebViewCategoryItems(categoryID: "638", categoryName: "Meat", isFood: false, isShop: false),
       // const WebViewCategoryItems(categoryID: "651", categoryName: "Beverages", isFood: false, isShop: false),
