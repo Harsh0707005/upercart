@@ -385,7 +385,7 @@ class SearchScreenState extends State<SearchScreen> with TickerProviderStateMixi
                                   ],
                                 ),),
                               Builder(builder: (_) {
-                                debugPrint(searchController.suggestedItemList![index].price!.toString());
+                                // debugPrint(searchController.suggestedItemList![index].price!.toString());
                                 return const SizedBox(); // Return an empty widget to avoid layout issues
                               }),
                             ]),
