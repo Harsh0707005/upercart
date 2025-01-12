@@ -45,6 +45,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/features/home/widgets/bad_weather_widget.dart';
 
+import '../widgets/web/ViewCategoryItems.dart';
+
 // import '../../../common/widgets/title_widget.dart';
 
 class WebNewHomeScreen extends StatefulWidget {
@@ -151,17 +153,77 @@ class _WebNewHomeScreenState extends State<WebNewHomeScreen> {
                     : isShop
                     ? const WebPopularStoresView()
                     : const WebMostPopularItemViewWidget(isFood: false, isShop: false),
-
-                const WebViewCategoryItems(categoryID: "643", categoryName: "Poultry", isFood: false, isShop: false),
-                const WebViewCategoryItems(categoryID: "647", categoryName: "Seafood & Fish", isFood: false, isShop: false),
-                const WebViewCategoryItems(categoryID: "638", categoryName: "Meat", isFood: false, isShop: false),
-                const WebViewCategoryItems(categoryID: "651", categoryName: "Beverages", isFood: false, isShop: false),
-                const WebViewCategoryItems(categoryID: "698", categoryName: "Oils, Baking & Condiments", isFood: false, isShop: false),
-                const WebViewCategoryItems(categoryID: "721", categoryName: "Snacks", isFood: false, isShop: false),
-                const WebViewCategoryItems(categoryID: "670", categoryName: "Prepared Foods", isFood: false, isShop: false),
-                const WebViewCategoryItems(categoryID: "624", categoryName: "Fresh Bakery", isFood: false, isShop: false),
-                const WebViewCategoryItems(categoryID: "609", categoryName: "Cookies, Desserts, and Ice Cream", isFood: false, isShop: false),
-                const WebViewCategoryItems(categoryID: "514", categoryName: "Small Appliances", isFood: false, isShop: false),
+                //
+                const CategoryItemsView(
+                  categoryId: "643",
+                  title: "Poultry",
+                  isFood: false,
+                  isShop: false,
+                ),
+                const CategoryItemsView(
+                  categoryId: "647",
+                  title: "Seafood & Fish",
+                  isFood: false,
+                  isShop: false,
+                ),
+                const CategoryItemsView(
+                  categoryId: "638",
+                  title: "Meat",
+                  isFood: false,
+                  isShop: false,
+                ),
+                const CategoryItemsView(
+                  categoryId: "651",
+                  title: "Beverages",
+                  isFood: false,
+                  isShop: false,
+                ),
+                const CategoryItemsView(
+                  categoryId: "698",
+                  title: "Oils, Baking & Condiments",
+                  isFood: false,
+                  isShop: false,
+                ),
+                const CategoryItemsView(
+                  categoryId: "721",
+                  title: "Snacks",
+                  isFood: false,
+                  isShop: false,
+                ),
+                const CategoryItemsView(
+                  categoryId: "670",
+                  title: "Prepared Foods",
+                  isFood: false,
+                  isShop: false,
+                ),
+                const CategoryItemsView(
+                  categoryId: "624",
+                  title: "Fresh Bakery",
+                  isFood: false,
+                  isShop: false,
+                ),
+                const CategoryItemsView(
+                  categoryId: "609",
+                  title: "Cookies, Desserts, and Ice Cream",
+                  isFood: false,
+                  isShop: false,
+                ),
+                const CategoryItemsView(
+                  categoryId: "514",
+                  title: "Small Appliances",
+                  isFood: false,
+                  isShop: false,
+                ),
+                // const WebViewCategoryItems(categoryID: "643", categoryName: "Poultry", isFood: true, isShop: false),
+                // const WebViewCategoryItems(categoryID: "647", categoryName: "Seafood & Fish", isFood: false, isShop: false),
+                // const WebViewCategoryItems(categoryID: "638", categoryName: "Meat", isFood: false, isShop: false),
+                // const WebViewCategoryItems(categoryID: "651", categoryName: "Beverages", isFood: false, isShop: false),
+                // const WebViewCategoryItems(categoryID: "698", categoryName: "Oils, Baking & Condiments", isFood: false, isShop: false),
+                // const WebViewCategoryItems(categoryID: "721", categoryName: "Snacks", isFood: false, isShop: false),
+                // const WebViewCategoryItems(categoryID: "670", categoryName: "Prepared Foods", isFood: false, isShop: false),
+                // const WebViewCategoryItems(categoryID: "624", categoryName: "Fresh Bakery", isFood: false, isShop: false),
+                // const WebViewCategoryItems(categoryID: "609", categoryName: "Cookies, Desserts, and Ice Cream", isFood: false, isShop: false),
+                // const WebViewCategoryItems(categoryID: "514", categoryName: "Small Appliances", isFood: false, isShop: false),
 
 
                 Center(
