@@ -35,6 +35,8 @@ import 'package:sixam_mart/features/cart/widgets/web_suggested_item_view_widget.
 import 'package:sixam_mart/features/home/screens/home_screen.dart';
 import 'package:sixam_mart/features/store/screens/store_screen.dart';
 
+import '../../checkout/screens/payment_screen.dart';
+
 class CartScreen extends StatefulWidget {
   final bool fromNav;
   const CartScreen({super.key, required this.fromNav});
@@ -690,29 +692,30 @@ class CheckoutButton extends StatelessWidget {
                   isBold:  ResponsiveHelper.isDesktop(context) ? false : true,
                   radius: ResponsiveHelper.isDesktop(context) ? Dimensions.radiusSmall : Dimensions.radiusDefault,
                   onPressed: () {
-                    if (cartController.notAvailableIndex==-1){
-                      showCustomSnackBar("Please choose an action if the product is unavailable.");
-                    }else {
-                      if(!cartController.cartList.first.item!.scheduleOrder! && availableList.contains(false)) {
-                        showCustomSnackBar('one_or_more_product_unavailable'.tr);
-                      } /*else if(AuthHelper.isGuestLoggedIn() && !Get.find<SplashController>().configModel!.guestCheckoutStatus!) {
-                        showCustomSnackBar('currently_your_zone_have_no_permission_to_place_any_order'.tr);
-                      }*/ else {
-                        if(Get.find<SplashController>().module == null) {
-                          int i = 0;
-                          for(i = 0; i < Get.find<SplashController>().moduleList!.length; i++){
-                            if(cartController.cartList[0].item!.moduleId == Get.find<SplashController>().moduleList![i].id){
-                              break;
-                            }
-                          }
-                          Get.find<SplashController>().setModule(Get.find<SplashController>().moduleList![i]);
-                          HomeScreen.loadData(true);
-                        }
-                        Get.find<CouponController>().removeCouponData(false);
-
-                        Get.toNamed(RouteHelper.getCheckoutRoute('cart'));
-                      }
-                    }
+                    // if (cartController.notAvailableIndex==-1){
+                    //   showCustomSnackBar("Please choose an action if the product is unavailable.");
+                    // }else {
+                    //   if(!cartController.cartList.first.item!.scheduleOrder! && availableList.contains(false)) {
+                    //     showCustomSnackBar('one_or_more_product_unavailable'.tr);
+                    //   } /*else if(AuthHelper.isGuestLoggedIn() && !Get.find<SplashController>().configModel!.guestCheckoutStatus!) {
+                    //     showCustomSnackBar('currently_your_zone_have_no_permission_to_place_any_order'.tr);
+                    //   }*/ else {
+                    //     if(Get.find<SplashController>().module == null) {
+                    //       int i = 0;
+                    //       for(i = 0; i < Get.find<SplashController>().moduleList!.length; i++){
+                    //         if(cartController.cartList[0].item!.moduleId == Get.find<SplashController>().moduleList![i].id){
+                    //           break;
+                    //         }
+                    //       }
+                    //       Get.find<SplashController>().setModule(Get.find<SplashController>().moduleList![i]);
+                    //       HomeScreen.loadData(true);
+                    //     }
+                    //     Get.find<CouponController>().removeCouponData(false);
+                    //
+                    //     Get.toNamed(RouteHelper.getCheckoutRoute('cart'));
+                    //   }
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentScreen()));
+                    // }
                 }),
               ),
             ],

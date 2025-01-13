@@ -27,6 +27,7 @@ import 'package:get/get.dart';
 import 'package:sixam_mart/features/home/widgets/cookies_view.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'helper/get_di.dart' as di;
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
@@ -37,6 +38,7 @@ Future<void> main() async {
     HttpOverrides.global = MyHttpOverrides();
   }
   setPathUrlStrategy();
+  Stripe.publishableKey = 'pk_test_51JOjsSHnzt8j4GULQOknhYz5QSs5ymHslgz3W6Qger0oMkFAMZ96AIpuTuoKzSwx1sThl3vIWfXYqGaEDBTy6H1600xAfBrwiw';
 
   /*///Pass all uncaught "fatal" errors from the framework to Crashlytics
   FlutterError.onError = (errorDetails) {
