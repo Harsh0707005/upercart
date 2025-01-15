@@ -391,7 +391,8 @@ class CheckoutController extends GetxController implements GetxService {
       }
 
       if(!isOfflinePay) {
-        callback(true, message, orderID, zoneID, amount, maximumCodOrderAmount, fromCart, isCashOnDeliveryActive, placeOrderBody.contactPersonNumber!, userID);
+        showCustomSnackBar("Done");
+        // callback(true, message, orderID, zoneID, amount, maximumCodOrderAmount, fromCart, isCashOnDeliveryActive, placeOrderBody.contactPersonNumber!, userID);
       } else {
         Get.find<CartController>().getCartDataOnline();
       }
@@ -403,7 +404,8 @@ class CheckoutController extends GetxController implements GetxService {
     } else {
 
       if(!isOfflinePay) {
-        callback(false, response.statusText, '-1', zoneID, amount, maximumCodOrderAmount, fromCart, isCashOnDeliveryActive, placeOrderBody.contactPersonNumber, userID);
+        showCustomSnackBar("Done");
+        // callback(false, response.statusText, '-1', zoneID, amount, maximumCodOrderAmount, fromCart, isCashOnDeliveryActive, placeOrderBody.contactPersonNumber, userID);
       } else {
         showCustomSnackBar(response.statusText);
       }
