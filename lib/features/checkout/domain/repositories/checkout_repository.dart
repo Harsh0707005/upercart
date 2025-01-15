@@ -53,7 +53,13 @@ class CheckoutRepository implements CheckoutRepositoryInterface {
 
   @override
   Future<Response> placeOrder(PlaceOrderBodyModel orderBody, List<MultipartBody>? orderAttachment) async {
-    return await apiClient.postMultipartData(AppConstants.placeOrderUri, orderBody.toJson(), orderAttachment ?? [], handleError: false);
+    String placeOrderUri;
+    if (orderBody.paymentMethod=="digital_payment"){
+      placeOrderUri = AppConstants.placeOrderStripeUri;
+    }else{
+      placeOrderUri = AppConstants.placeOrderUri;
+    }
+    return await apiClient.postMultipartData(placeOrderUri, orderBody.toJson(), orderAttachment ?? [], handleError: false);
   }
 
   @override

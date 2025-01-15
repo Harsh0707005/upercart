@@ -391,8 +391,40 @@ class CheckoutController extends GetxController implements GetxService {
       }
 
       if(!isOfflinePay) {
-        showCustomSnackBar("Done");
-        // callback(true, message, orderID, zoneID, amount, maximumCodOrderAmount, fromCart, isCashOnDeliveryActive, placeOrderBody.contactPersonNumber!, userID);
+        if (placeOrderBody.paymentMethod=="digital_payment"){
+          if(GetPlatform.isWeb) {
+            String? hostname = html.window.location.hostname;
+            String protocol = html.window.location.protocol;
+            String selectedUrl;
+            selectedUrl = '$protocol//$hostname${RouteHelper
+                .orderSuccess}?id=$orderID&status=';
+            // print(selectedUrl);
+            html.window.open(selectedUrl, "_self");
+          }else{
+            double total = ((amount / 100) * Get.find<SplashController>().configModel!.loyaltyPointItemPurchasePoint!);
+            if(AuthHelper.isLoggedIn()) {
+              Get.find<AuthController>().saveEarningPoint(total.toStringAsFixed(0));
+            }
+            if (ResponsiveHelper.isDesktop(Get.context) && AuthHelper.isLoggedIn()){
+              Get.offNamed(RouteHelper.getInitialRoute());
+              Future.delayed(const Duration(seconds: 2) , () => Get.dialog(Center(child: SizedBox(height: 350, width : 500, child: OrderSuccessfulDialog(orderID: orderID)))));
+            } else {
+              Get.offNamed(RouteHelper.getOrderSuccessRoute(orderID, placeOrderBody.contactPersonNumber!, createAccount: _isCreateAccount));
+            }
+          }
+        }else {
+          callback(
+              true,
+              message,
+              orderID,
+              zoneID,
+              amount,
+              maximumCodOrderAmount,
+              fromCart,
+              isCashOnDeliveryActive,
+              placeOrderBody.contactPersonNumber!,
+              userID);
+        }
       } else {
         Get.find<CartController>().getCartDataOnline();
       }
@@ -404,8 +436,8 @@ class CheckoutController extends GetxController implements GetxService {
     } else {
 
       if(!isOfflinePay) {
-        showCustomSnackBar("Done");
-        // callback(false, response.statusText, '-1', zoneID, amount, maximumCodOrderAmount, fromCart, isCashOnDeliveryActive, placeOrderBody.contactPersonNumber, userID);
+        // showCustomSnackBar("Done");
+        callback(false, response.statusText, '-1', zoneID, amount, maximumCodOrderAmount, fromCart, isCashOnDeliveryActive, placeOrderBody.contactPersonNumber, userID);
       } else {
         showCustomSnackBar(response.statusText);
       }
