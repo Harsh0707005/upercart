@@ -2,6 +2,7 @@ import 'package:just_the_tooltip/just_the_tooltip.dart';
 import 'package:sixam_mart/common/widgets/address_widget.dart';
 import 'package:sixam_mart/features/address/controllers/address_controller.dart';
 import 'package:sixam_mart/features/cart/controllers/cart_controller.dart';
+import 'package:sixam_mart/features/checkout/screens/payment_element_web.dart';
 import 'package:sixam_mart/features/coupon/controllers/coupon_controller.dart';
 import 'package:sixam_mart/features/home/controllers/home_controller.dart';
 import 'package:sixam_mart/features/item/domain/models/item_model.dart';
@@ -39,6 +40,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import '../screens/payment_element_web.dart';
 
 class CheckoutScreen extends StatefulWidget {
   final List<CartModel?>? cartList;
@@ -89,12 +92,29 @@ class CheckoutScreenState extends State<CheckoutScreen> {
   final FocusNode guestConfirmPasswordNode = FocusNode();
 
   bool _firstTimeCheckPayment = false;
+  String? clientSecret;
+  bool gotClientSecret = false;
 
   @override
   void initState() {
     super.initState();
 
     initCall();
+  }
+
+  Future<void> getClientSecretWeb(amount) async{
+    final response = await http.post(
+      Uri.parse(
+          'https://us-central1-upercart-fd922.cloudfunctions.net/createPaymentIntent'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'amount': amount * 100, 'currency': 'usd'}),
+    );
+    final jsonResponse = jsonDecode(response.body);
+    print(jsonResponse["clientSecret"]);
+    setState(() {
+      clientSecret = jsonResponse["clientSecret"];
+      gotClientSecret = true;
+    });
   }
 
   Future<void> initCall() async {
@@ -198,6 +218,8 @@ class CheckoutScreenState extends State<CheckoutScreen> {
     }
   }
 
+
+
   void _setSinglePaymentActive() {
     if ((!_firstTimeCheckPayment &&
             !_isCashOnDeliveryActive! &&
@@ -258,8 +280,8 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   _getModuleData(store: checkoutController.store);
               _isCashOnDeliveryActive =
                   _checkCODActive(store: checkoutController.store);
-              _isDigitalPaymentActive =
-                  _checkDigitalPaymentActive(store: checkoutController.store);
+                _isDigitalPaymentActive =
+                    _checkDigitalPaymentActive(store: checkoutController.store);
               _isOfflinePaymentActive = Get.find<SplashController>()
                       .configModel!
                       .offlinePaymentStatus! &&
@@ -278,6 +300,11 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                     checkoutController.store!.schedules);
                 _taxPercent = checkoutController.store!.tax;
               }
+
+              if (checkoutController.paymentMethodIndex==2 && GetPlatform.isWeb && !gotClientSecret){
+                getClientSecretWeb(checkoutController.viewTotalPrice);
+              }
+
               return GetBuilder<CouponController>(builder: (couponController) {
                 double? maxCodOrderAmount;
 
@@ -491,6 +518,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                                       badWeatherChargeForToolTip,
                                                   extraChargeForToolTip:
                                                       extraChargeForToolTip,
+                                                  clientSecret: clientSecret,
                                                 )),
                                             const SizedBox(
                                                 width: Dimensions
@@ -603,6 +631,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                                 badWeatherChargeForToolTip,
                                             extraChargeForToolTip:
                                                 extraChargeForToolTip,
+                                            clientSecret: clientSecret,
                                           ),
                                           BottomSection(
                                             checkoutController:
@@ -1020,6 +1049,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                 : null,
                           ));
                         }
+                        print(carts);
 
                         PlaceOrderBodyModel placeOrderBody =
                             PlaceOrderBodyModel(
@@ -1130,7 +1160,16 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                           ));
                         } else {
                           if (checkoutController.paymentMethodIndex == 2) {
-                            bool paymentSuccess = await _makePayment(total);
+                            bool paymentSuccess;
+                            if (GetPlatform.isWeb) {
+                              paymentSuccess = await pay();
+
+                              if (!paymentSuccess){
+                                return;
+                              }
+                            }else{
+                              paymentSuccess = await _makePayment(total);
+                            }
                             if (paymentSuccess) {
                               checkoutController.placeOrder(
                                   placeOrderBody,

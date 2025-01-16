@@ -26,6 +26,8 @@ import 'package:sixam_mart/features/checkout/widgets/web_delivery_instruction_vi
 import 'package:sixam_mart/features/store/widgets/camera_button_sheet_widget.dart';
 import 'dart:io';
 
+import '../screens/loading_button.dart';
+import '../screens/payment_element_web.dart';
 import 'note_prescription_section.dart';
 
 class TopSection extends StatelessWidget {
@@ -63,6 +65,7 @@ class TopSection extends StatelessWidget {
   final String deliveryChargeForView;
   final double badWeatherCharge;
   final double extraChargeForToolTip;
+  final String? clientSecret;
 
   const TopSection({
     super.key, required this.deliveryCharge, required  this.charge, required this.tomorrowClosed,
@@ -75,7 +78,7 @@ class TopSection extends StatelessWidget {
     required this.guestEmailController, required this.guestEmailNode, required this.tooltipController1,
     required this.tooltipController2, required this.dmTipsTooltipController, required this.guestPasswordController, required this.guestConfirmPasswordController,
     required this.guestPasswordNode, required this.guestConfirmPasswordNode, required this.variationPrice, required this.deliveryChargeForView,
-    required this.badWeatherCharge, required this.extraChargeForToolTip,
+    required this.badWeatherCharge, required this.extraChargeForToolTip, required this.clientSecret,
   });
 
   @override
@@ -319,7 +322,14 @@ class TopSection extends StatelessWidget {
         ),
         SizedBox(height: isDesktop ? Dimensions.paddingSizeLarge : 0),
 
-
+        Container(
+            child: (clientSecret != null && checkoutController.paymentMethodIndex==2)
+                ? PlatformPaymentElement(clientSecret)
+                : null),
+        // LoadingButton(onPressed: ()async{
+        //   var m=pay();
+        //
+        // }, text: 'Pay'),
       ]),
     );
   }
