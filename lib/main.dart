@@ -38,7 +38,8 @@ Future<void> main() async {
     HttpOverrides.global = MyHttpOverrides();
   }
   setPathUrlStrategy();
-  Stripe.publishableKey = 'pk_test_51JOjsSHnzt8j4GULQOknhYz5QSs5ymHslgz3W6Qger0oMkFAMZ96AIpuTuoKzSwx1sThl3vIWfXYqGaEDBTy6H1600xAfBrwiw';
+  // Stripe.publishableKey = 'pk_test_51JOjsSHnzt8j4GULQOknhYz5QSs5ymHslgz3W6Qger0oMkFAMZ96AIpuTuoKzSwx1sThl3vIWfXYqGaEDBTy6H1600xAfBrwiw';
+  Stripe.publishableKey = 'pk_live_51JOjsSHnzt8j4GUL9h7rZkz9t9DOLa0XJQ8nd27Zg93ypzzEZYiXHyostQW71oiHQiOSCQjyzA0DCedUjbce1aAk00lKQJqufD';
 
   /*///Pass all uncaught "fatal" errors from the framework to Crashlytics
   FlutterError.onError = (errorDetails) {
