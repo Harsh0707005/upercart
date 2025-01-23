@@ -93,8 +93,8 @@ class SearchResultWidgetState extends State<SearchResultWidget> with TickerProvi
 
           tabs: [
             Tab(text: 'item'.tr),
-            Tab(text: Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText!
-                ? 'restaurants'.tr : 'stores'.tr),
+            // Tab(text: Get.find<SplashController>().configModel!.moduleConfig!.module!.showRestaurantText!
+            //     ? 'restaurants'.tr : 'stores'.tr),
           ],
         ),
       )),
