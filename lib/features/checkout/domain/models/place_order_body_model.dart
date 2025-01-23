@@ -6,6 +6,7 @@ class PlaceOrderBodyModel {
   List<OnlineCart>? _cart;
   double? _couponDiscountAmount;
   double? _orderAmount;
+  double? _additionalCharge;
   String? _orderType;
   String? _paymentMethod;
   String? _orderNote;
@@ -45,6 +46,7 @@ class PlaceOrderBodyModel {
     required double? couponDiscountAmount,
     required String? couponCode,
     required double orderAmount,
+    double? additionalCharge,
     required String? orderType,
     required String paymentMethod,
     required int? storeId,
@@ -81,6 +83,7 @@ class PlaceOrderBodyModel {
     _cart = cart;
     _couponDiscountAmount = couponDiscountAmount;
     _orderAmount = orderAmount;
+    _additionalCharge = additionalCharge;
     _orderType = orderType;
     _paymentMethod = paymentMethod;
     _orderNote = orderNote;
@@ -206,6 +209,7 @@ class PlaceOrderBodyModel {
       data['coupon_discount_amount'] = _couponDiscountAmount.toString();
     }
     data['order_amount'] = _orderAmount.toString();
+    data['additional_charge'] = _additionalCharge != null ? _additionalCharge.toString() : '0.0';
     data['order_type'] = _orderType!;
     data['payment_method'] = _paymentMethod!;
     if (_orderNote != null && _orderNote!.isNotEmpty) {

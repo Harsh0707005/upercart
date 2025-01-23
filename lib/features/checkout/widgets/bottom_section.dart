@@ -227,7 +227,7 @@ class BottomSection extends StatelessWidget {
             Get.find<SplashController>().configModel!.additionalChargeStatus! ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Text(Get.find<SplashController>().configModel!.additionalChargeName!, style: robotoRegular),
               Text(
-                '(+) ${PriceConverter.convertPrice(Get.find<SplashController>().configModel!.additionCharge)}',
+                '(+) \$ ${((subTotal*Get.find<SplashController>().configModel!.additionCharge!/100)).ceilToDouble().toString()}',
                 style: robotoRegular, textDirection: TextDirection.ltr,
               ),
             ]) : const SizedBox(),

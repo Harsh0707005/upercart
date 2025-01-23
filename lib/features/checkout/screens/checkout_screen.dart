@@ -358,7 +358,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                 double additionalCharge = Get.find<SplashController>()
                         .configModel!
                         .additionalChargeStatus!
-                    ? Get.find<SplashController>().configModel!.additionCharge!
+                    ? ((subTotal*Get.find<SplashController>().configModel!.additionCharge!/100).ceilToDouble())
                     : 0;
                 double originalCharge = _calculateOriginalDeliveryCharge(
                   store: checkoutController.store,
@@ -560,6 +560,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                                     tax,
                                                     discount,
                                                     total,
+                                                    additionalCharge,
                                                     maxCodOrderAmount,
                                                     isPrescriptionRequired,
                                                   ),
@@ -664,6 +665,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                               tax,
                                               discount,
                                               total,
+                                              additionalCharge,
                                               maxCodOrderAmount,
                                               isPrescriptionRequired,
                                             ),
@@ -733,6 +735,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                         tax,
                                         discount,
                                         total,
+                                        additionalCharge,
                                         maxCodOrderAmount,
                                         isPrescriptionRequired,
                                       ),
@@ -760,6 +763,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
       double tax,
       double? discount,
       double total,
+      double additionalCharge,
       double? maxCodOrderAmount,
       bool isPrescriptionRequired) {
     return Container(
@@ -1049,7 +1053,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                 : null,
                           ));
                         }
-                        print(carts);
+                        // print(carts);
 
                         PlaceOrderBodyModel placeOrderBody =
                             PlaceOrderBodyModel(
@@ -1065,6 +1069,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                   : DateConverter.dateToDateAndTime(
                                       scheduleEndDate),
                           orderAmount: total,
+                          additionalCharge: additionalCharge,
                           orderNote: checkoutController.noteController.text,
                           orderType: checkoutController.orderType,
                           paymentMethod: checkoutController
