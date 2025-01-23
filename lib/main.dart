@@ -55,12 +55,14 @@ Future<void> main() async {
 
   if(GetPlatform.isWeb){
     await Firebase.initializeApp(options: const FirebaseOptions(
-        apiKey: "AIzaSyD0Z911mOoWCVkeGdjhIKwWFPRgvd6ZyAw",
-        authDomain: "stackmart-500c7.firebaseapp.com",
-        projectId: "stackmart-500c7",
-        storageBucket: "stackmart-500c7.appspot.com",
-        messagingSenderId: "491987943015",
-        appId: "1:491987943015:web:d8bc7ab8dbc9991c8f1ec2"
+        apiKey: "AIzaSyAn8pYTiPKE5wKe52vlEoEFbTotEoajtEU",
+        authDomain: "upercart-fd922.firebaseapp.com",
+        databaseURL: "https://upercart-fd922-default-rtdb.firebaseio.com",
+        projectId: "upercart-fd922",
+        storageBucket: "upercart-fd922.appspot.com",
+        messagingSenderId: "697959762788",
+        appId: "1:697959762788:web:2bcffd120d863739230871",
+        measurementId: "G-M6GL785XJC"
     ));
   } else if(GetPlatform.isAndroid) {
     await Firebase.initializeApp(
