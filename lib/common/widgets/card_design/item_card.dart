@@ -169,11 +169,10 @@ class ItemCard extends StatelessWidget {
                               ) : const SizedBox(),
                               // SizedBox(height: item.discount != null && item.discount! > 0 ? Dimensions.paddingSizeExtraSmall : 0),
 
-                              Text(
-                                PriceConverter.convertPrice(
+                              Text("USD ${PriceConverter.convertPrice(
                                   Get.find<ItemController>().getStartingPrice(item), discount: discount,
                                   discountType: discountType,
-                                ),
+                                )}",
                                 textDirection: TextDirection.ltr, style: robotoMedium,
                               ),
 
