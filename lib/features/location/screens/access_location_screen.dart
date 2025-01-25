@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sixam_mart/common/widgets/address_widget.dart';
 import 'package:sixam_mart/features/location/controllers/location_controller.dart';
 import 'package:sixam_mart/features/address/controllers/address_controller.dart';
@@ -24,6 +26,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart/features/location/screens/pick_map_screen.dart';
 import 'package:sixam_mart/features/location/screens/web_landing_page.dart';
+
+import '../../../api/api_client.dart';
+import '../../../util/app_constants.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../../auth/domain/reposotories/deliveryman_registration_repository.dart';
+import '../../profile/controllers/profile_controller.dart';
+import '../domain/models/zone_data_model.dart';
 
 class AccessLocationScreen extends StatefulWidget {
   final bool fromSignUp;
@@ -140,82 +149,327 @@ class _AccessLocationScreenState extends State<AccessLocationScreen> {
   }
 }
 
-class BottomButton extends StatelessWidget {
+class BottomButton extends StatefulWidget {
   final bool fromSignUp;
   final String? route;
+
   const BottomButton({super.key, required this.fromSignUp, required this.route});
+
+  @override
+  _BottomButtonState createState() => _BottomButtonState();
+}
+
+class _BottomButtonState extends State<BottomButton> {
+  bool _zoneLoaded = false;
+  ZoneDataModel? _selectedZone;
+  List<ZoneDataModel> _zoneList = [];
+  AddressModel? _address;
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchZoneList(); // Call fetchZoneList here so it's executed only once
+  }
+
+  Future<void> fetchZoneList() async {
+    // Initialize dependencies
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final apiClient = ApiClient(appBaseUrl: AppConstants.baseUrl, sharedPreferences: Get.find()); // Make sure it's correctly implemented
+
+    // Create an instance of the repository
+    final repository = DeliverymanRegistrationRepository(
+      sharedPreferences: sharedPreferences,
+      apiClient: apiClient,
+    );
+
+    // Fetch zone list
+    try {
+      final zoneList = await repository.getList(isZone: true) as List<ZoneDataModel>?;
+      if (zoneList != null) {
+        zoneList.forEach((zone) {
+          print('Zone ID: ${zone.id}, Zone Name: ${zone.name}, Zone coordinates: ${zone.coordinates?.coordinates?.map((latLng) => '(${latLng.latitude}, ${latLng.longitude})').join(", ")}');
+        });
+        _zoneList = zoneList;
+      } else {
+        print('Zone list is empty.');
+      }
+      setState(() {
+        _zoneLoaded = true;
+      });
+    } catch (e) {
+      print('Error fetching zone list: $e');
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Center(child: SizedBox(width: 700, child: Column(children: [
 
-      CustomButton(
-        buttonText: 'user_current_location'.tr,
-        onPressed: () async {
-          Get.find<LocationController>().checkPermission(() async {
-            Get.dialog(const CustomLoaderWidget(), barrierDismissible: false);
-            AddressModel address = await Get.find<LocationController>().getCurrentLocation(true);
-            ZoneResponseModel response = await Get.find<LocationController>().getZone(address.latitude, address.longitude, false);
-            if(response.isSuccess) {
-              Get.find<LocationController>().saveAddressAndNavigate(
-                address, fromSignUp, route, route != null, ResponsiveHelper.isDesktop(Get.context),
-              );
-            }else {
-              Get.back();
-              if(ResponsiveHelper.isDesktop(Get.context)) {
-                showGeneralDialog(context: Get.context!, pageBuilder: (_,__,___) {
-                  return SizedBox(
-                      height: 300, width: 300,
-                      child: PickMapScreen(fromSignUp: fromSignUp, canRoute: route != null, fromAddAddress: false, route: route ?? RouteHelper.accessLocation)
-                  );
-                });
-              }else {
-                Get.toNamed(RouteHelper.getPickMapRoute(route ?? RouteHelper.accessLocation, route != null));
-                showCustomSnackBar('service_not_available_in_current_location'.tr);
-              }
-            }
-          });
-        },
-        icon: Icons.my_location,
+      // CustomButton(
+      //   buttonText: 'user_current_location'.tr,
+      //   onPressed: () async {
+      //     Get.find<LocationController>().checkPermission(() async {
+      //       Get.dialog(const CustomLoaderWidget(), barrierDismissible: false);
+      //       AddressModel address = await Get.find<LocationController>().getCurrentLocation(true);
+      //       ZoneResponseModel response = await Get.find<LocationController>().getZone(address.latitude, address.longitude, false);
+      //       if(response.isSuccess) {
+      //         Get.find<LocationController>().saveAddressAndNavigate(
+      //           address, widget.fromSignUp, widget.route, widget.route != null, ResponsiveHelper.isDesktop(Get.context),
+      //         );
+      //       }else {
+      //         Get.back();
+      //         if(ResponsiveHelper.isDesktop(Get.context)) {
+      //           showGeneralDialog(context: Get.context!, pageBuilder: (_,__,___) {
+      //             return SizedBox(
+      //                 height: 300, width: 300,
+      //                 child: PickMapScreen(fromSignUp: widget.fromSignUp, canRoute: widget.route != null, fromAddAddress: false, route: widget.route ?? RouteHelper.accessLocation)
+      //             );
+      //           });
+      //         }else {
+      //           Get.toNamed(RouteHelper.getPickMapRoute(widget.route ?? RouteHelper.accessLocation, widget.route != null));
+      //           showCustomSnackBar('service_not_available_in_current_location'.tr);
+      //         }
+      //       }
+      //     });
+      //   },
+      //   icon: Icons.my_location,
+      // ),
+
+      // Expanded(
+      //   flex: 3,
+      //   child: _zoneLoaded
+      //       ? Container(
+      //     decoration: BoxDecoration(
+      //       color: Colors.white,
+      //       borderRadius: BorderRadius.circular(10),
+      //       border: Border.all(
+      //         color: Theme.of(context).primaryColor.withOpacity(0.3),
+      //         width: 1,
+      //       ),
+      //     ),
+      //     child: Padding(
+      //       padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge), // Adjust padding as needed
+      //       child: DropdownButton<ZoneDataModel>(
+      //         iconSize: 0,
+      //         underline: Container(),
+      //         value: _selectedZone,
+      //         dropdownColor: Colors.white, // Sets dropdown menu background to white
+      //         style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold), // Optional: sets text color
+      //         items: [
+      //           DropdownMenuItem<ZoneDataModel>(
+      //             value: null,
+      //             enabled: false,
+      //             child: Text(
+      //               'Choose a delivery zone',
+      //               style: TextStyle(color: Theme.of(context).disabledColor),
+      //             ), // Makes this item unselectable
+      //           ),
+      //           ..._zoneList.map((zone) {
+      //             return DropdownMenuItem<ZoneDataModel>(
+      //               value: zone,
+      //               child: Text(zone.name ?? ''),
+      //             );
+      //           }).toList(),
+      //         ],
+      //         onChanged: (ZoneDataModel? newZone) {
+      //           setState(() {
+      //             _selectedZone = newZone;
+      //           });
+      //         },
+      //         hint: Text(
+      //           _zoneList.isEmpty ? 'No zones available' : 'Select Zone',
+      //           style: TextStyle(color: Theme.of(context).disabledColor),
+      //         ),
+      //       ),
+      //     ),
+      //
+      //   )
+      //       : const SizedBox(width: Dimensions.paddingSizeSmall),
+      // ),
+
+      Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: Theme.of(context).primaryColor.withOpacity(0.3),
+            width: 1,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge), // Adjust padding as needed
+          child: DropdownButton<ZoneDataModel>(
+            iconSize: 0,
+            underline: Container(),
+            value: _selectedZone,
+            dropdownColor: Colors.white, // Sets dropdown menu background to white
+            style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold), // Optional: sets text color
+            items: [
+              DropdownMenuItem<ZoneDataModel>(
+                value: null,
+                enabled: false,
+                child: Text(
+                  'Choose a delivery zone',
+                  style: TextStyle(color: Theme.of(context).disabledColor),
+                ), // Makes this item unselectable
+              ),
+              ..._zoneList.map((zone) {
+                return DropdownMenuItem<ZoneDataModel>(
+                  value: zone,
+                  child: Text(zone.name ?? ''),
+                );
+              }).toList(),
+            ],
+            onChanged: (ZoneDataModel? newZone) {
+              setState(() {
+                _selectedZone = newZone;
+              });
+            },
+            hint: Text(
+              _zoneList.isEmpty ? 'No zones available' : 'Select Zone',
+              style: TextStyle(color: Theme.of(context).disabledColor),
+            ),
+          ),
+        ),
+
       ),
+
+
       const SizedBox(height: Dimensions.paddingSizeSmall),
 
-      TextButton(
-        style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: Theme.of(context).primaryColor),
-            borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-          ),
-          minimumSize: const Size(Dimensions.webMaxWidth, 50),
-          padding: EdgeInsets.zero,
-        ),
-        onPressed: () {
-          if(ResponsiveHelper.isDesktop(Get.context)) {
-            showGeneralDialog(context: Get.context!, pageBuilder: (_,__,___) {
-              return SizedBox(
-                  height: 300, width: 300,
-                  child: PickMapScreen(fromSignUp: fromSignUp, canRoute: route != null, fromAddAddress: false, route: route ?? RouteHelper.accessLocation)
-              );
-            });
+      CustomButton(
+        width: 150, height: 60, fontSize: Dimensions.fontSizeDefault,
+        buttonText: 'set_location'.tr,
+        onPressed: () async {
+
+          print('Zone ID: ${_selectedZone!.id}, Zone Name: ${_selectedZone!.name}, Zone coordinates: ${_selectedZone!.coordinates?.coordinates?.map((latLng) => '(${latLng.latitude}, ${latLng.longitude})').join(", ")}');
+
+          String latitude = _selectedZone!.coordinates!.coordinates![0].latitude.toString();
+          String longitude = _selectedZone!.coordinates!.coordinates![0].longitude.toString();
+          print(latitude+" " +longitude);
+          // try {
+          //   _address = AddressModel(
+          //       latitude: "18.0179",
+          //       longitude: "76.8099",
+          //       // zoneId: _selectedZone!.id
+          //       zoneId: 2,
+          //     address: _selectedZone!.name.toString()
+          //   );
+          //   _controller.text = _selectedZone!.name.toString();
+          //   print(_controller.text);
+          //
+          // }catch(e){
+          //   print(e);
+          // }
+
+          try {
+            // Generate random point inside the polygon
+            LatLng randomPoint = generateRandomPointInPolygon(
+                _selectedZone!.coordinates!.coordinates!
+            );
+
+            // Update address model
+            _address = AddressModel(
+                latitude: randomPoint.longitude.toString(),
+                longitude: randomPoint.latitude.toString(),
+                zoneId: _selectedZone!.id,
+                address: _selectedZone!.name.toString(),
+                addressType: "others"
+            );
+            // print('ID: ${_address?.id}');
+            // print('Address Type: ${_address?.addressType}');
+            // print('Contact Person Number: ${_address?.contactPersonNumber}');
+            // print('Address: ${_address?.address}');
+            // print('Additional Address: ${_address?.additionalAddress}');
+            // print('Latitude: ${_address?.latitude}');
+            // print('Longitude: ${_address?.longitude}');
+            // print('Zone ID: ${_address?.zoneId}');
+            // print('Zone IDs: ${_address?.zoneIds}');
+            // print('Method: ${_address?.method}');
+            // print('Contact Person Name: ${_address?.contactPersonName}');
+            // print('Street Number: ${_address?.streetNumber}');
+            // print('House: ${_address?.house}');
+            // print('Floor: ${_address?.floor}');
+            // print('Zone Data: ${_address?.zoneData}');
+            // print('Area IDs: ${_address?.areaIds}');
+            // print('Email: ${_address?.email}');
+            _controller.text = _selectedZone!.name.toString();
+          } catch (e) {
+            print('Error generating random point: $e');
+          }
+
+          if(_address != null && _controller.text.trim().isNotEmpty) {
+
+            Get.dialog(const CustomLoaderWidget(), barrierDismissible: false);
+            // ZoneResponseModel response = await Get.find<LocationController>().getZone(
+            //   _address!.latitude, _address!.longitude, false,
+            // );
+            ZoneResponseModel response = await Get.find<LocationController>().getZone(
+              _address!.latitude, _address!.longitude, false,
+            );
+            // ZoneResponseModel response = await Get.find<LocationController>().getZone(
+            //   latitude, longitude, false,
+            // );
+            if(response.isSuccess) {
+              if(!AuthHelper.isGuestLoggedIn() && !AuthHelper.isLoggedIn()) {
+                Get.find<AuthController>().guestLogin().then((response) {
+                  if(response.isSuccess) {
+                    Get.find<ProfileController>().setForceFullyUserEmpty();
+                    Get.find<LocationController>().saveAddressAndNavigate(
+                      _address, widget.fromSignUp, widget.route, widget.route != null, ResponsiveHelper.isDesktop(Get.context),
+                    );
+                  }
+                });
+              } else {
+                Get.find<LocationController>().saveAddressAndNavigate(
+                  _address, widget.fromSignUp, widget.route, widget.route != null, ResponsiveHelper.isDesktop(Get.context),
+                );
+              }
+            }else {
+              Get.back();
+              showCustomSnackBar('service_not_available_in_current_location'.tr);
+            }
           }else {
-            Get.toNamed(RouteHelper.getPickMapRoute(
-              route ?? (fromSignUp ? RouteHelper.signUp : RouteHelper.accessLocation), route != null,
-            ));
+            showCustomSnackBar('pick_an_address'.tr);
           }
         },
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Padding(
-            padding: const EdgeInsets.only(right: Dimensions.paddingSizeExtraSmall),
-            child: Icon(Icons.map, color: Theme.of(context).primaryColor),
-          ),
-          Text('set_from_map'.tr, textAlign: TextAlign.center, style: robotoBold.copyWith(
-            color: Theme.of(context).primaryColor,
-            fontSize: Dimensions.fontSizeLarge,
-          )),
-        ]),
       ),
+      const SizedBox(width: Dimensions.paddingSizeSmall),
 
+      // TextButton(
+      //   style: TextButton.styleFrom(
+      //     shape: RoundedRectangleBorder(
+      //       side: BorderSide(width: 1, color: Theme.of(context).primaryColor),
+      //       borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+      //     ),
+      //     minimumSize: const Size(Dimensions.webMaxWidth, 50),
+      //     padding: EdgeInsets.zero,
+      //   ),
+      //   onPressed: () {
+      //     if(ResponsiveHelper.isDesktop(Get.context)) {
+      //       showGeneralDialog(context: Get.context!, pageBuilder: (_,__,___) {
+      //         return SizedBox(
+      //             height: 300, width: 300,
+      //             child: PickMapScreen(fromSignUp: widget.fromSignUp, canRoute: widget.route != null, fromAddAddress: false, route: widget.route ?? RouteHelper.accessLocation)
+      //         );
+      //       });
+      //     }else {
+      //       Get.toNamed(RouteHelper.getPickMapRoute(
+      //         widget.route ?? (widget.fromSignUp ? RouteHelper.signUp : RouteHelper.accessLocation), widget.route != null,
+      //       ));
+      //     }
+      //   },
+      //   child: Row( // The Row content remains unchanged.
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Icon(Icons.map, color: Theme.of(context).primaryColor),
+      //       const SizedBox(width: Dimensions.paddingSizeSmall),
+      //       Text('set_location_manually'.tr, style: robotoBold.copyWith(color: Theme.of(context).primaryColor)),
+      //     ],
+      //   ),
+      // ),
     ])));
   }
 }
-
