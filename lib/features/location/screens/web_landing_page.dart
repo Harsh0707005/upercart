@@ -246,7 +246,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge),
                         child: Text(
-                          splashController.landingModel?.fixedLocationTitle ?? '', textAlign: TextAlign.center,
+                          "Choose your delivery zone in Jamaica", textAlign: TextAlign.center,
                           style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
                         ),
                       ),
