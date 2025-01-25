@@ -68,9 +68,9 @@ class _WebNewHomeScreenState extends State<WebNewHomeScreen> {
     _isLogin = AuthHelper.isLoggedIn();
     Get.find<SplashController>().getWebSuggestedLocationStatus();
 
-    if(_isLogin){
-      suggestAddressBottomSheet();
-    }
+    // if(_isLogin){
+    //   suggestAddressBottomSheet();
+    // }
   }
 
   Future<void> suggestAddressBottomSheet() async {
