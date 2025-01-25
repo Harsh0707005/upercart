@@ -125,7 +125,12 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       debugPrint('number can\'t parse : $e');
     }
   }
+  bool _isValidJamaicaPosition(LatLng position) {
+    return position.latitude >= 17.0 && position.latitude <= 18.5 &&
+        position.longitude >= -78.5 && position.longitude <= -76.0;
+  }
 
+    GoogleMapController? _mapController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,8 +178,17 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                         borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
                                         child: Stack(clipBehavior: Clip.none, children: [
                                           GoogleMap(
-                                            initialCameraPosition: CameraPosition(target: _initialPosition, zoom: 16),
+                                            initialCameraPosition: const CameraPosition(
+                                                target: LatLng(18.1096, -77.2975), // Jamaica's center
+                                                zoom: 8
+                                            ),
                                             minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
+                                            cameraTargetBounds: CameraTargetBounds(
+                                                LatLngBounds(
+                                                    southwest: const LatLng(17.0, -78.5), // Southwest Jamaica boundary
+                                                    northeast: const LatLng(18.5, -76.0)  // Northeast Jamaica boundary
+                                                )
+                                            ),
                                             onTap: (latLng) {
                                               if(ResponsiveHelper.isDesktop(Get.context)) {
 
@@ -198,8 +212,19 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                             onCameraIdle: () {
                                               locationController.updatePosition(_cameraPosition, true);
                                             },
-                                            onCameraMove: ((position) => _cameraPosition = position),
+                                            onCameraMove: (position) {
+                                              // Strict validation to keep camera within Jamaica
+                                              if (!_isValidJamaicaPosition(position.target)) {
+                                                // Revert to last valid position
+                                                _mapController?.animateCamera(
+                                                    CameraUpdate.newLatLng(const LatLng(18.1096, -77.2975))
+                                                );
+                                                return;
+                                              }
+                                              _cameraPosition = position;
+                                            },
                                             onMapCreated: (GoogleMapController controller) {
+                                              _mapController = controller;
                                               locationController.setMapController(controller);
                                               if(widget.address == null) {
                                                 locationController.getCurrentLocation(true, mapController: controller);
@@ -476,8 +501,17 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
                       child: Stack(clipBehavior: Clip.none, children: [
                         GoogleMap(
-                          initialCameraPosition: CameraPosition(target: _initialPosition, zoom: 16),
+                          initialCameraPosition: const CameraPosition(
+                              target: LatLng(18.1096, -77.2975), // Jamaica's center
+                              zoom: 8
+                          ),
                           minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
+                          cameraTargetBounds: CameraTargetBounds(
+                              LatLngBounds(
+                                  southwest: const LatLng(17.0, -78.5), // Southwest Jamaica boundary
+                                  northeast: const LatLng(18.5, -76.0)  // Northeast Jamaica boundary
+                              )
+                          ),
                           onTap: (latLng) {
                           if(ResponsiveHelper.isDesktop(Get.context)) {
                             showGeneralDialog(context: context, pageBuilder: (_,__,___) {
@@ -507,11 +541,19 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           onCameraIdle: () {
                             locationController.updatePosition(_cameraPosition, true);
                           },
-                          onCameraMove: ((position) {
+                          onCameraMove: (position) {
+                            // Strict validation to keep camera within Jamaica
+                            if (!_isValidJamaicaPosition(position.target)) {
+                              // Revert to last valid position
+                              _mapController?.animateCamera(
+                                  CameraUpdate.newLatLng(const LatLng(18.1096, -77.2975))
+                              );
+                              return;
+                            }
                             _cameraPosition = position;
-                          }
-                          ),
+                          },
                           onMapCreated: (GoogleMapController controller) {
+                            _mapController = controller;
                             locationController.setMapController(controller);
                             if(widget.address == null) {
                               locationController.getCurrentLocation(true, mapController: controller);
