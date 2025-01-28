@@ -69,9 +69,9 @@ class ItemCard extends StatelessWidget {
                           ),
                         ),
 
-                        AddFavouriteView(
-                          item: item,
-                        ),
+                        // AddFavouriteView(
+                        //   item: item,
+                        // ),
 
                         item.isStoreHalalActive! && item.isHalalItem! ? const Positioned(
                           top: 40, right: 15,
