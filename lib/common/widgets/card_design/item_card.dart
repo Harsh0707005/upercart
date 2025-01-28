@@ -128,7 +128,7 @@ class ItemCard extends StatelessWidget {
                             child: Column(
                                 crossAxisAlignment: isPopularItem ? CrossAxisAlignment.center : CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                               (isFood || isShop) ? Text(item.storeName ?? '', style: robotoRegular.copyWith(color: Theme.of(context).disabledColor))
-                                  : Text(item.name ?? '', style: robotoBold, maxLines: 1, overflow: TextOverflow.ellipsis),
+                                  : Text(item.name ?? '', textAlign: TextAlign.center, style: robotoBold, maxLines: 3, overflow: TextOverflow.ellipsis),
 
                               (isFood || isShop) ? Flexible(
                                 child: Text(

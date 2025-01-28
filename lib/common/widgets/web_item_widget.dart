@@ -146,6 +146,7 @@ class WebItemWidget extends StatelessWidget {
                               Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
                                 Text(
                                   isStore ? store!.name! : item!.name!,
+                                  textAlign: TextAlign.center,
                                   style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall),
                                   maxLines: desktop ? 2 : 2, overflow: TextOverflow.ellipsis,
                                 ),
