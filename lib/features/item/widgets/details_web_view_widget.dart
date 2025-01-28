@@ -47,9 +47,24 @@ class DetailsWebViewWidget extends StatelessWidget {
                 children: [
                   Expanded(flex: 4,child: SingleChildScrollView(
                     physics: const NeverScrollableScrollPhysics(),
-                    child: Column(
+                    child:
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: Theme.of(context).textTheme.bodyLarge!.color,
+                          ),
+                          onPressed: () => {
+                            if (Navigator.canPop(context)){
+                              Navigator.pop(context)
+                            }else{
+                      Get.toNamed(RouteHelper.getInitialRoute())
+                            }
+                                      }, // Navigates back
+                        ),
                         SizedBox(
                           height: Get.size.height*0.5,
                           child: CustomImage(
