@@ -147,7 +147,7 @@ class WebItemWidget extends StatelessWidget {
                                 Text(
                                   isStore ? store!.name! : item!.name!,
                                   style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall),
-                                  maxLines: desktop ? 1 : 1, overflow: TextOverflow.ellipsis,
+                                  maxLines: desktop ? 2 : 2, overflow: TextOverflow.ellipsis,
                                 ),
                                 const SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
