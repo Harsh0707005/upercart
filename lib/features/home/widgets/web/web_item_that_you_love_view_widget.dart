@@ -98,10 +98,10 @@ class _WebItemThatYouLoveViewWidgetState extends State<WebItemThatYouLoveViewWid
                                       ),
                                     ),
 
-                                    AddFavouriteView(
-                                      top: 10, right: 10,
-                                      item: Item(id: recommendItems[index].id),
-                                    ),
+                                    // AddFavouriteView(
+                                    //   top: 10, right: 10,
+                                    //   item: Item(id: recommendItems[index].id),
+                                    // ),
 
                                     DiscountTag(
                                       discount: Get.find<ItemController>().getDiscount(recommendItems[index]),
@@ -295,10 +295,10 @@ class _WebItemThatYouLoveForShopState extends State<WebItemThatYouLoveForShop> {
                                     ),
                                   ),
 
-                                  AddFavouriteView(
-                                    top: 10, right: 10,
-                                    item: Item(id: recommendItems[index].id),
-                                  ),
+                                  // AddFavouriteView(
+                                  //   top: 10, right: 10,
+                                  //   item: Item(id: recommendItems[index].id),
+                                  // ),
 
                                   DiscountTag(
                                     discount: Get.find<ItemController>().getDiscount(recommendItems[index]),

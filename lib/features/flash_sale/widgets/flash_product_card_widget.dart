@@ -58,10 +58,10 @@ class FlashProductCardWidget extends StatelessWidget {
 
               OrganicTag(item: product.item!, placeInImage: false),
 
-              AddFavouriteView(
-                top: 5, right: 5,
-                item: product.item!,
-              ),
+              // AddFavouriteView(
+              //   top: 5, right: 5,
+              //   item: product.item!,
+              // ),
 
               ResponsiveHelper.isDesktop(context) ? Positioned(
                 bottom: -15, left: 0, right: 0,

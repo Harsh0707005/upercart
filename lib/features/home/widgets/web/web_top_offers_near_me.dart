@@ -341,11 +341,11 @@ class _WebTopOffersNearMeState extends State<WebTopOffersNearMe> {
                     ),
                   ) : const SizedBox(),
 
-                  AddFavouriteView(
-                    left: Get.find<LocalizationController>().isLtr ? null : 15,
-                    right: Get.find<LocalizationController>().isLtr ? 15 : null,
-                    item: null, storeId: store.id,
-                  ),
+                  // AddFavouriteView(
+                  //   left: Get.find<LocalizationController>().isLtr ? null : 15,
+                  //   right: Get.find<LocalizationController>().isLtr ? 15 : null,
+                  //   item: null, storeId: store.id,
+                  // ),
                 ],
               ),
             );

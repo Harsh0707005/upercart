@@ -63,9 +63,9 @@ class ReviewItemCard extends StatelessWidget {
                       ),
                     ),
 
-                    AddFavouriteView(
-                      item: item!,
-                    ),
+                    // AddFavouriteView(
+                    //   item: item!,
+                    // ),
 
                     DiscountTag(
                       isFloating: true,
@@ -145,10 +145,10 @@ class ReviewItemCard extends StatelessWidget {
                     ),
                   ),
 
-                  AddFavouriteView(
-                    top: 10, right: 10,
-                    item: item!,
-                  ),
+                  // AddFavouriteView(
+                  //   top: 10, right: 10,
+                  //   item: item!,
+                  // ),
 
                   item!.isStoreHalalActive! && item!.isHalalItem! ? const Positioned(
                     top: 35, right: 10,

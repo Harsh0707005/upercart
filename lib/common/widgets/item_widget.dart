@@ -135,18 +135,18 @@ class ItemWidget extends StatelessWidget {
 
                         isAvailable ? const SizedBox() : NotAvailableWidget(isStore: isStore),
 
-                        Positioned(
-                          top: 5, left: 5,
-                          child: GetBuilder<FavouriteController>(builder: (favouriteController) {
-                            bool isWished = isStore ? favouriteController.wishStoreIdList.contains(store!.id) : favouriteController.wishItemIdList.contains(item!.id);
-                            return CustomFavouriteWidget(
-                              isWished: isWished,
-                              isStore: isStore,
-                              store: store,
-                              item: item,
-                            );
-                          }),
-                        ),
+                        // Positioned(
+                        //   top: 5, left: 5,
+                        //   child: GetBuilder<FavouriteController>(builder: (favouriteController) {
+                        //     bool isWished = isStore ? favouriteController.wishStoreIdList.contains(store!.id) : favouriteController.wishItemIdList.contains(item!.id);
+                        //     return CustomFavouriteWidget(
+                        //       isWished: isWished,
+                        //       isStore: isStore,
+                        //       store: store,
+                        //       item: item,
+                        //     );
+                        //   }),
+                        // ),
                       ]),
                       const SizedBox(width: Dimensions.paddingSizeSmall),
 

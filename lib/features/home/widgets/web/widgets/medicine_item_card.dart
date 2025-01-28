@@ -59,9 +59,9 @@ class MedicineItemCard extends StatelessWidget {
                       ),
                     ),
 
-                    AddFavouriteView(
-                      item: item,
-                    ),
+                    // AddFavouriteView(
+                    //   item: item,
+                    // ),
 
                     DiscountTag(
                       discount: discount,

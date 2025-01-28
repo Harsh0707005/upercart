@@ -236,11 +236,11 @@ class _WebNewOnMartViewWidgetState extends State<WebNewOnMartViewWidget> {
                                 ),
                               ),
 
-                              AddFavouriteView(
-                                left: Get.find<LocalizationController>().isLtr ? null : 15,
-                                right: Get.find<LocalizationController>().isLtr ? 15 : null,
-                                item: null, storeId: storeList[index].id,
-                              ),
+                              // AddFavouriteView(
+                              //   left: Get.find<LocalizationController>().isLtr ? null : 15,
+                              //   right: Get.find<LocalizationController>().isLtr ? 15 : null,
+                              //   item: null, storeId: storeList[index].id,
+                              // ),
                             ],
                           ),
                         );

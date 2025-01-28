@@ -236,18 +236,18 @@ class WebItemWidget extends StatelessWidget {
                   ]),
                 ),
 
-                Positioned(
-                  top: 10, right: 10,
-                  child: GetBuilder<FavouriteController>(builder: (favouriteController) {
-                    bool isWished = isStore ? favouriteController.wishStoreIdList.contains(store!.id) : favouriteController.wishItemIdList.contains(item!.id);
-                    return CustomFavouriteWidget(
-                      isWished: isWished,
-                      isStore: isStore,
-                      store: store,
-                      item: item,
-                    );
-                  }),
-                ),
+                // Positioned(
+                //   top: 10, right: 10,
+                //   child: GetBuilder<FavouriteController>(builder: (favouriteController) {
+                //     bool isWished = isStore ? favouriteController.wishStoreIdList.contains(store!.id) : favouriteController.wishItemIdList.contains(item!.id);
+                //     return CustomFavouriteWidget(
+                //       isWished: isWished,
+                //       isStore: isStore,
+                //       store: store,
+                //       item: item,
+                //     );
+                //   }),
+                // ),
               ],
             ),
           ),

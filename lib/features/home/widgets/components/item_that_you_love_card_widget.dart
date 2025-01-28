@@ -73,9 +73,9 @@ class ItemThatYouLoveCard extends StatelessWidget {
                       ),
                     ) : const SizedBox(),
 
-                    AddFavouriteView(
-                      item: item,
-                    ),
+                    // AddFavouriteView(
+                    //   item: item,
+                    // ),
 
                     Get.find<ItemController>().isAvailable(item) ? const SizedBox() : const NotAvailableWidget(),
 

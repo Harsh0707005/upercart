@@ -274,11 +274,11 @@ class _WebBestStoreNearbyViewWidgetState extends State<WebBestStoreNearbyViewWid
                                       ]),
                                     ),
 
-                                    AddFavouriteView(
-                                      left: Get.find<LocalizationController>().isLtr ? null : 15,
-                                      right: Get.find<LocalizationController>().isLtr ? 15 : null,
-                                      item: Item(id: storeList[index].id),
-                                    ),
+                                    // AddFavouriteView(
+                                    //   left: Get.find<LocalizationController>().isLtr ? null : 15,
+                                    //   right: Get.find<LocalizationController>().isLtr ? 15 : null,
+                                    //   item: Item(id: storeList[index].id),
+                                    // ),
 
                                   ]),
                                 ),
