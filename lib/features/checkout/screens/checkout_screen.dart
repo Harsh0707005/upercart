@@ -102,7 +102,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
     initCall();
   }
 
-  Future<void> getClientSecretWeb(amount) async{
+  Future<void> getClientSecretWeb(amount) async {
     final response = await http.post(
       Uri.parse(
           'https://us-central1-upercart-fd922.cloudfunctions.net/createPaymentIntent'),
@@ -218,8 +218,6 @@ class CheckoutScreenState extends State<CheckoutScreen> {
     }
   }
 
-
-
   void _setSinglePaymentActive() {
     if ((!_firstTimeCheckPayment &&
             !_isCashOnDeliveryActive! &&
@@ -280,8 +278,8 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   _getModuleData(store: checkoutController.store);
               _isCashOnDeliveryActive =
                   _checkCODActive(store: checkoutController.store);
-                _isDigitalPaymentActive =
-                    _checkDigitalPaymentActive(store: checkoutController.store);
+              _isDigitalPaymentActive =
+                  _checkDigitalPaymentActive(store: checkoutController.store);
               _isOfflinePaymentActive = Get.find<SplashController>()
                       .configModel!
                       .offlinePaymentStatus! &&
@@ -301,7 +299,9 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                 _taxPercent = checkoutController.store!.tax;
               }
 
-              if (checkoutController.paymentMethodIndex==2 && GetPlatform.isWeb && !gotClientSecret){
+              if (checkoutController.paymentMethodIndex == 2 &&
+                  GetPlatform.isWeb &&
+                  !gotClientSecret) {
                 getClientSecretWeb(checkoutController.viewTotalPrice);
               }
 
@@ -358,7 +358,12 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                 double additionalCharge = Get.find<SplashController>()
                         .configModel!
                         .additionalChargeStatus!
-                    ? ((subTotal*Get.find<SplashController>().configModel!.additionCharge!/100).ceilToDouble())
+                    ? ((subTotal *
+                            Get.find<SplashController>()
+                                .configModel!
+                                .additionCharge! /
+                            100)
+                        .ceilToDouble())
                     : 0;
                 double originalCharge = _calculateOriginalDeliveryCharge(
                   store: checkoutController.store,
@@ -424,7 +429,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                   showCashBackSnackBar();
                 }
 
-                _setSinglePaymentActive();
+                // _setSinglePaymentActive();
 
                 return (checkoutController.distance != null &&
                         checkoutController.store != null)
@@ -1169,10 +1174,10 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                             if (GetPlatform.isWeb) {
                               paymentSuccess = await pay();
 
-                              if (!paymentSuccess){
+                              if (!paymentSuccess) {
                                 return;
                               }
-                            }else{
+                            } else {
                               paymentSuccess = await _makePayment(total);
                             }
                             if (paymentSuccess) {

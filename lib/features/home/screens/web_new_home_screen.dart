@@ -148,11 +148,11 @@ class _WebNewHomeScreenState extends State<WebNewHomeScreen> {
                 //     : isShop ? const WebPopularStoresView()
                 //     : const WebMostPopularItemViewWidget(isFood: false, isShop: false),
 
-                isFood
-                    ? const WebNewOnViewWidget(isFood: true)
-                    : isShop
-                    ? const WebPopularStoresView()
-                    : const WebMostPopularItemViewWidget(isFood: false, isShop: false),
+                // isFood
+                //     ? const WebNewOnViewWidget(isFood: true)
+                //     : isShop
+                //     ? const WebPopularStoresView()
+                //     : const WebMostPopularItemViewWidget(isFood: false, isShop: false),
                 //
                 const CategoryItemsView(
                   categoryId: "643",

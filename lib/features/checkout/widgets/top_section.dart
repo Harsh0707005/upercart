@@ -312,7 +312,7 @@ class TopSection extends StatelessWidget {
 
             PaymentSection(
               storeId: storeId, isCashOnDeliveryActive: isCashOnDeliveryActive, isDigitalPaymentActive: isDigitalPaymentActive,
-              isWalletActive: isWalletActive, total: total, checkoutController: checkoutController, isOfflinePaymentActive: isOfflinePaymentActive,
+              isWalletActive: isWalletActive, total: total, checkoutController: checkoutController, isOfflinePaymentActive: isOfflinePaymentActive, deliveryCharge: deliveryCharge
             ),
             SizedBox(height: isGuestLoggedIn ? 0 : Dimensions.paddingSizeLarge),
 
