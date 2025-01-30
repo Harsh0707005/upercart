@@ -186,11 +186,11 @@ class BottomSection extends StatelessWidget {
               const SizedBox(height: Dimensions.paddingSizeSmall),
             ]) : const SizedBox(),
 
-            storeId == null ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text('${'vat_tax'.tr} ${taxIncluded ? 'tax_included'.tr : ''} ($taxPercent%)', style: robotoRegular),
-              Text((taxIncluded ? '' : '(+) ') + PriceConverter.convertPrice(tax), style: robotoRegular, textDirection: TextDirection.ltr),
-            ]) : const SizedBox(),
-            SizedBox(height: storeId == null ? Dimensions.paddingSizeSmall : 0),
+            // storeId == null ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            //   Text('${'vat_tax'.tr} ${taxIncluded ? 'tax_included'.tr : ''} ($taxPercent%)', style: robotoRegular),
+            //   Text((taxIncluded ? '' : '(+) ') + PriceConverter.convertPrice(tax), style: robotoRegular, textDirection: TextDirection.ltr),
+            // ]) : const SizedBox(),
+            // SizedBox(height: storeId == null ? Dimensions.paddingSizeSmall : 0),
 
             (!takeAway && Get.find<SplashController>().configModel!.dmTipsStatus == 1) ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

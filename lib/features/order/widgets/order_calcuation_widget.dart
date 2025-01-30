@@ -175,11 +175,11 @@ class OrderCalculationWidget extends StatelessWidget {
                     ]) : const SizedBox(),
                     (order.additionalCharge != null && order.additionalCharge! > 0) ? const SizedBox(height: 10) : const SizedBox(),
 
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                      Text('${'vat_tax'.tr} ${taxIncluded ? 'tax_included'.tr : ''} (${order.taxPercentage ?? 0}%)', style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall)),
-                      Text('(+) ${PriceConverter.convertPrice(tax)}', style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall), textDirection: TextDirection.ltr),
-                    ]),
-                    const SizedBox(height: 10),
+                    // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                    //   Text('${'vat_tax'.tr} ${taxIncluded ? 'tax_included'.tr : ''} (${order.taxPercentage ?? 0}%)', style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall)),
+                    //   Text('(+) ${PriceConverter.convertPrice(tax)}', style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall), textDirection: TextDirection.ltr),
+                    // ]),
+                    // const SizedBox(height: 10),
 
                     (dmTips > 0) ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
