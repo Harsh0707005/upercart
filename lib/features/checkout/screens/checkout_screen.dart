@@ -250,6 +250,14 @@ class CheckoutScreenState extends State<CheckoutScreen> {
     guestContactPersonNumberController.dispose();
   }
 
+  bool isChecked = false;
+
+  void handleCheckboxChanged(bool value) {
+    setState(() {
+      isChecked = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Module? module =
@@ -567,7 +575,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                                     total,
                                                     additionalCharge,
                                                     maxCodOrderAmount,
-                                                    isPrescriptionRequired,
+                                                    isPrescriptionRequired, isChecked
                                                   ),
                                                   referralDiscount:
                                                       referralDiscount,
@@ -575,6 +583,8 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                                       isPassedVariationPrice
                                                           ? variations
                                                           : 0,
+                                                  onCheckboxChanged: handleCheckboxChanged,
+                                                  isChecked: isChecked,
                                                 )),
                                           ]),
                                     )
@@ -672,13 +682,15 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                               total,
                                               additionalCharge,
                                               maxCodOrderAmount,
-                                              isPrescriptionRequired,
+                                              isPrescriptionRequired, isChecked
                                             ),
                                             referralDiscount: referralDiscount,
                                             variationPrice:
                                                 isPassedVariationPrice
                                                     ? variations
                                                     : 0,
+                                            onCheckboxChanged: handleCheckboxChanged,
+                                            isChecked: isChecked,
                                           )
                                         ]),
                             )),
@@ -742,7 +754,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
                                         total,
                                         additionalCharge,
                                         maxCodOrderAmount,
-                                        isPrescriptionRequired,
+                                        isPrescriptionRequired, isChecked,
                                       ),
                                     ],
                                   ),
@@ -770,7 +782,8 @@ class CheckoutScreenState extends State<CheckoutScreen> {
       double total,
       double additionalCharge,
       double? maxCodOrderAmount,
-      bool isPrescriptionRequired) {
+      bool isPrescriptionRequired,
+      bool isChecked) {
     return Container(
       width: Dimensions.webMaxWidth,
       alignment: Alignment.center,
@@ -782,7 +795,7 @@ class CheckoutScreenState extends State<CheckoutScreen> {
             isLoading: checkoutController.isLoading,
             buttonText: 'place_order'.tr,
             // buttonText: "Enter Credit/Debit Card Details",
-            onPressed: checkoutController.acceptTerms
+            onPressed: isChecked
                 ? () async {
                     bool isAvailable = true;
                     DateTime scheduleStartDate = DateTime.now();

@@ -39,12 +39,14 @@ class BottomSection extends StatelessWidget {
   final bool isPrescriptionRequired;
   final double referralDiscount;
   final double variationPrice;
+  final Function(bool) onCheckboxChanged;
+  final bool isChecked;
 
   const BottomSection({super.key, required this.checkoutController, required this.total, required this.module, required this.subTotal,
     required this.discount, required this.couponController, required this.taxIncluded, required this.tax,
     required this.deliveryCharge, required this.todayClosed, required this.tomorrowClosed,
     required this.orderAmount, this.maxCodOrderAmount, this.storeId, this.taxPercent, required this.price,
-    required this.addOns, this.checkoutButton, required this.isPrescriptionRequired, required this.referralDiscount, required this.variationPrice});
+    required this.addOns, this.checkoutButton, required this.isPrescriptionRequired, required this.referralDiscount, required this.variationPrice, required this.onCheckboxChanged, required this.isChecked});
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +91,8 @@ class BottomSection extends StatelessWidget {
             ///ToDo : Prescription Image Picker
             PrescriptionImagePickerWidget(checkoutController: checkoutController, storeId: storeId, isPrescriptionRequired: isPrescriptionRequired),
 
-            const CheckoutCondition(),
+            CheckoutCondition(onCheckboxChanged: onCheckboxChanged,
+              isChecked: isChecked,),
 
             const SizedBox(height: Dimensions.paddingSizeLarge),
             ResponsiveHelper.isDesktop(context) ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.start, children: [

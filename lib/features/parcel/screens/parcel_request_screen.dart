@@ -554,7 +554,7 @@ class _ParcelRequestScreenState extends State<ParcelRequestScreen> {
 
                 const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
-                const CheckoutCondition(isParcel: true),
+                // const CheckoutCondition(isParcel: true),
 
                 SizedBox(height: ResponsiveHelper.isDesktop(context) ? Dimensions.paddingSizeLarge : 0),
                 ResponsiveHelper.isDesktop(context) ? _bottomButton(parcelController, total, isGuestLoggedIn: isGuestLoggedIn) : const SizedBox(),
