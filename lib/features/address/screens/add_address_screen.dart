@@ -135,7 +135,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       endDrawer: const MenuDrawer(), endDrawerEnableOpenDragGesture: false,
-      appBar: CustomAppBar(title: widget.forGuest ? 'set_address'.tr : widget.address == null ? 'add_new_address'.tr : 'update_address'.tr),
+      // appBar: CustomAppBar(title: widget.forGuest ? 'set_address'.tr : widget.address == null ? 'add_new_address'.tr : 'update_address'.tr),
+      appBar: CustomAppBar(title: 'set_address'),
       body: SafeArea(
         child: GetBuilder<ProfileController>(builder: (profileController) {
           return GetBuilder<LocationController>(builder: (locationController) {
@@ -152,6 +153,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         child: Center(child: Text('address'.tr, style: robotoMedium)),
                       ),
                       const SizedBox(height: Dimensions.paddingSizeLarge),
+                      Text('set_address'.tr, style: robotoMedium),
+                      const SizedBox(height: Dimensions.paddingSizeSmall),
 
                       Center(
                         child: SizedBox(

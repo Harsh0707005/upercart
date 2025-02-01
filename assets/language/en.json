@@ -1040,7 +1040,7 @@
   "please_update_your_delivery_info" : "Please update your delivery info",
   "address_type" : "Address type",
   "street" : "Street",
-  "set_address" : "Set Address",
+  "set_address" : "Tap the map to set address",
   "please_setup_your_delivery_address_first" : "Please setup your delivery address first",
   "pay_offline" : "Pay Offline",
   "offline_payment" : "Offline Payment",
