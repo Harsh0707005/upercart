@@ -106,6 +106,7 @@ class _OrderSuccessfulScreenState extends State<OrderSuccessfulScreen> {
                       : 'you_placed_the_order_successfully'.tr : 'your_order_is_failed_to_place'.tr,
                   style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge),
                 ),
+                Text("Your order number is #$orderId", style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge)),
                 const SizedBox(height: Dimensions.paddingSizeSmall),
 
                 widget.createAccount! ? Padding(
