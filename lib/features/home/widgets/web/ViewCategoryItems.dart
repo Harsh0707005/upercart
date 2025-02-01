@@ -141,7 +141,7 @@ class _CategoryItemsViewState extends State<CategoryItemsView> with AutomaticKee
                   ),
 
                   SizedBox(
-                    height: 285,
+                    height: 400,
                     width: Get.width,
                     child: ListView.builder(
                       controller: scrollController,
