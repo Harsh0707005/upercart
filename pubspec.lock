@@ -1561,10 +1561,10 @@ packages:
     dependency: transitive
     description:
       name: stripe_js
-      sha256: d12c628c82e0cea0f5c93c7751c8b01d5ef25f417797c270cd62713564cdee6f
+      sha256: ab8ad22cbcb071ac8f2dc29a81f7d53a60c5a4b678db45cc04b46b1507334423
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.1"
+    version: "6.3.0"
   stripe_platform_interface:
     dependency: transitive
     description:

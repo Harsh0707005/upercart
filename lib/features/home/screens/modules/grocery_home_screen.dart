@@ -49,7 +49,7 @@ class GroceryHomeScreen extends StatelessWidget {
       // const HighlightWidget(),
       // const FlashSaleViewWidget(),
       // const BestStoreNearbyView(),
-      const MostPopularItemView(isFood: false, isShop: false),
+      // const MostPopularItemView(isFood: false, isShop: false),
       const CategoryItemsView(
         categoryId: "643",
         title: "Poultry",

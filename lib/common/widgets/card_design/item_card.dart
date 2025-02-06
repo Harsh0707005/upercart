@@ -229,17 +229,32 @@ class _ItemCardState extends State<ItemCard> {
                                 ), textDirection: TextDirection.ltr,
                               ) : const SizedBox(),
                               // SizedBox(height: item.discount != null && item.discount! > 0 ? Dimensions.paddingSizeExtraSmall : 0),
+                              Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "USD ${PriceConverter.convertPrice(
+                                        Get.find<ItemController>().getStartingPrice(widget.item),
+                                        discount: discount,
+                                        discountType: discountType,
+                                      )}",
+                                      textDirection: TextDirection.ltr,
+                                      style: robotoMedium,
+                                    ),
 
-                              Text("USD ${PriceConverter.convertPrice(
-                                  Get.find<ItemController>().getStartingPrice(widget.item), discount: discount,
-                                  discountType: discountType,
-                                )}",
-                                textDirection: TextDirection.ltr, style: robotoMedium,
+                                    // const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+
+                                    Text(
+                                      jmdPrice != null && jmdPrice! > 0
+                                          ? "JMD \$ ${jmdPrice?.toStringAsFixed(2)}"
+                                          : "",
+                                    ),
+                                  ],
+                                ),
                               ),
 
-                              // const SizedBox(height: Dimensions.paddingSizeExtraSmall),
-
-                              Text(jmdPrice!=null && jmdPrice!>0 ?"JMD \$ ${jmdPrice?.toStringAsFixed(2)}":""),
 
                               const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
