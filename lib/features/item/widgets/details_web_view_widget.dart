@@ -536,7 +536,7 @@ class _DetailsWebViewWidgetState extends State<DetailsWebViewWidget> {
                                                                   .cartList[
                                                               itemController
                                                                   .cartIndex])
-                                                      : widget.priceWithAddOns)} ${jmdPrice!=null && jmdPrice!>0 ? "(JMD \$ ${jmdPrice?.toStringAsFixed(2)}":""})",
+                                                      : widget.priceWithAddOns)} ${jmdPrice!=null && jmdPrice!>0 ? "(JMD \$ ${jmdPrice?.toStringAsFixed(2)})":""}",
                                               textDirection: TextDirection.ltr,
                                               style: robotoBold.copyWith(
                                                 color: Theme.of(context)
