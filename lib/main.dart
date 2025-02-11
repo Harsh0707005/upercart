@@ -67,10 +67,10 @@ Future<void> main() async {
   } else if(GetPlatform.isAndroid) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        apiKey: "AIzaSyCc3OCd5I2xSlnftZ4bFAbuCzMhgQHLivA",
-        appId: "1:491987943015:android:a6fb4303cc4bf3d18f1ec2",
-        messagingSenderId: "491987943015",
-        projectId: "stackmart-500c7",
+        apiKey: "AIzaSyDfoGKk7URJocCNsTpCgSCvR9wUN3iQKGE",
+        appId: "1:697959762788:android:4d031279892930e1230871",
+        messagingSenderId: "697959762788",
+        projectId: "upercart-fd922",
       ),
     );
   } else {
