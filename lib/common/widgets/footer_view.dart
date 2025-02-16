@@ -376,7 +376,7 @@ class _FooterViewState extends State<FooterView> {
                                     ),
                                   ]),
                                   Column(children: [
-                                    GestureDetector(
+                                    MouseRegion(cursor: SystemMouseCursors.click,child:GestureDetector(
                                       onTap: () async {
                                         final Uri uri = Uri.parse(
                                             "https://wa.me/18768130959");
@@ -390,10 +390,10 @@ class _FooterViewState extends State<FooterView> {
                                       },
                                       child: Image.asset(Images.contactUs,
                                           width: 50, height: 50),
-                                    ),
+                                    )),
                                     const SizedBox(
                                         height: Dimensions.paddingSizeSmall),
-                                    GestureDetector(
+                                    MouseRegion(cursor: SystemMouseCursors.click,child: GestureDetector(
                                       onTap: () async {
                                         final Uri uri = Uri.parse(
                                             "https://wa.me/18768130959");
@@ -407,10 +407,10 @@ class _FooterViewState extends State<FooterView> {
                                       },
                                       child: Text('contact_us'.tr,
                                           style: robotoBold),
-                                    ),
+                                    ),),
                                     const SizedBox(
                                         height: Dimensions.paddingSizeSmall),
-                                    GestureDetector(
+                                    MouseRegion(cursor: SystemMouseCursors.click,child:GestureDetector(
                                       onTap: () async {
                                         final Uri uri = Uri.parse(
                                             "https://wa.me/18768130959");
@@ -426,7 +426,7 @@ class _FooterViewState extends State<FooterView> {
                                           style: robotoRegular.copyWith(
                                               fontSize: Dimensions
                                                   .fontSizeExtraSmall)),
-                                    ),
+                                    )),
                                   ]),
                                   Column(children: [
                                     Image.asset(Images.findUsHere,
