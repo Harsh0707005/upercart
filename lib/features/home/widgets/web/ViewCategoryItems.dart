@@ -136,7 +136,7 @@ class _CategoryItemsViewState extends State<CategoryItemsView> with AutomaticKee
                     ),
                     child: TitleWidget(
                       title: widget.title,
-                      onTap: () => Get.toNamed(RouteHelper.getCategoryItemRoute(int.parse(widget.title), widget.title)),
+                      onTap: () => Get.toNamed(RouteHelper.getCategoryItemRoute(int.parse(widget.categoryId), widget.title)),
                     ),
                   ),
 
