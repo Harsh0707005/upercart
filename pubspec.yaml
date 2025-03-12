@@ -1,7 +1,7 @@
 name: sixam_mart
 description: Send groceries directly to loved ones in Jamaica. Upercart connects you with local grocers, offering fresh produce, pantry staples, and more. Convenient online ordering & reliable delivery. Show you care with Upercart.
 publish_to: 'none' #
-version: 1.0.3+4
+version: 1.0.4+5
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
