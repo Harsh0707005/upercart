@@ -381,6 +381,7 @@ class _WebItemWidgetState extends State<WebItemWidget> {
                                                       textDirection:
                                                           TextDirection.ltr,
                                                     ),const SizedBox(width: 4),
+                                                    jmdPrice!=null?
                                                     Text(
                                                       jmdPrice != null && jmdPrice! > 0
                                                           ? "(JMD \$ ${jmdPrice?.toStringAsFixed(2)})"
@@ -392,7 +393,7 @@ class _WebItemWidgetState extends State<WebItemWidget> {
                                                               .fontSizeExtraSmall),
                                                       textDirection:
                                                       TextDirection.ltr,
-                                                    ),
+                                                    ):const SizedBox(width: 0),
                                                     ]),
                                                     SizedBox(
                                                         width: discount! > 0
