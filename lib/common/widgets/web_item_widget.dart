@@ -322,27 +322,27 @@ class _WebItemWidgetState extends State<WebItemWidget> {
                                             ),
                                           )
                                         : const SizedBox(),
-                                    (widget.isStore
-                                            ? widget.store!.address != null
-                                            : widget.item!.storeName != null)
-                                        ? Text(
-                                      widget.isStore
-                                                ? widget.store!.address ?? ''
-                                                : widget.item!.storeName ?? '',
-                                            style: robotoRegular.copyWith(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize:
-                                                  Dimensions.fontSizeOverSmall,
-                                              color: widget.isStore
-                                                  ? Theme.of(context)
-                                                      .disabledColor
-                                                  : Theme.of(context)
-                                                      .primaryColor,
-                                            ),
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          )
-                                        : const SizedBox(),
+                                    // (widget.isStore
+                                    //         ? widget.store!.address != null
+                                    //         : widget.item!.storeName != null)
+                                    //     ? Text(
+                                    //   widget.isStore
+                                    //             ? widget.store!.address ?? ''
+                                    //             : widget.item!.storeName ?? '',
+                                    //         style: robotoRegular.copyWith(
+                                    //           fontWeight: FontWeight.w300,
+                                    //           fontSize:
+                                    //               Dimensions.fontSizeOverSmall,
+                                    //           color: widget.isStore
+                                    //               ? Theme.of(context)
+                                    //                   .disabledColor
+                                    //               : Theme.of(context)
+                                    //                   .primaryColor,
+                                    //         ),
+                                    //         maxLines: 1,
+                                    //         overflow: TextOverflow.ellipsis,
+                                    //       )
+                                    //     : const SizedBox(),
                                     SizedBox(
                                         height: ((desktop || widget.isStore) &&
                                                 (widget.isStore
@@ -368,6 +368,11 @@ class _WebItemWidgetState extends State<WebItemWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.min,
                                                   children: [
+                                                    Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisSize: MainAxisSize.max,
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+
                                                     Text(
                                                       "USD ${PriceConverter.convertPrice(widget.item!.price, discount: discount, discountType: discountType)}",
                                                       style: robotoMedium.copyWith(
@@ -381,11 +386,14 @@ class _WebItemWidgetState extends State<WebItemWidget> {
                                                           ? "(JMD \$ ${jmdPrice?.toStringAsFixed(2)})"
                                                           : "",
                                                       style: robotoMedium.copyWith(
+                                                          color: Theme.of(context)
+                                                              .primaryColor,
                                                           fontSize: Dimensions
                                                               .fontSizeExtraSmall),
                                                       textDirection:
                                                       TextDirection.ltr,
                                                     ),
+                                                    ]),
                                                     SizedBox(
                                                         width: discount! > 0
                                                             ? Dimensions

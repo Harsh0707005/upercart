@@ -54,6 +54,7 @@ class _ItemCardState extends State<ItemCard> {
     double? discount = widget.item.storeDiscount == 0 ? widget.item.discount : widget.item.storeDiscount;
     String? discountType = widget.item.storeDiscount == 0 ? widget.item.discountType : 'percent';
 
+    print(Get.find<ItemController>().getStartingPrice(widget.item));
     usdTojmd(PriceConverter.convertPrice(
       Get.find<ItemController>().getStartingPrice(widget.item), discount: discount,
       discountType: discountType,
