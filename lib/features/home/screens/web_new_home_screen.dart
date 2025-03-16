@@ -46,6 +46,7 @@ import 'package:get/get.dart';
 import 'package:sixam_mart/features/home/widgets/bad_weather_widget.dart';
 
 import '../widgets/web/ViewCategoryItems.dart';
+import '../widgets/web/web_highlight_widget.dart';
 
 // import '../../../common/widgets/title_widget.dart';
 
@@ -137,7 +138,7 @@ class _WebNewHomeScreenState extends State<WebNewHomeScreen> {
                 //     : isShop ? const WebMostPopularItemViewWidget(isShop: true, isFood: false)
                 //     : const WebSpecialOfferView(isFood: false, isShop: false),
                 //
-                // const WebHighlightWidget(),
+                const WebHighlightWidget(),
 
                 // (isPharmacy || isShop) ? const MiddleSectionMultipleBannerViewWidget()
                 //     : isFood ? const WebBestReviewItemViewWidget()
